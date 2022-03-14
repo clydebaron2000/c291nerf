@@ -6,4 +6,5 @@
 *.npz
 *.dae
 data/*
+!data/zips/*
 logs/*
