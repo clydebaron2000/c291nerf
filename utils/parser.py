@@ -72,7 +72,7 @@ def config_parser():
 
     # dataset options
     parser.add_argument("--dataset_type", type=str, default='llff',
-                        help='options: llff / blender / deepvoxels/pngs')
+                        help='options: llff / blender / deepvoxels/pictures')
     parser.add_argument("--testskip", type=int, default=8,
                         help='will load 1/N images from test/val sets, useful for large datasets like deepvoxels')
 
@@ -97,13 +97,7 @@ def config_parser():
                         help='set for spherical 360 scenes')
     parser.add_argument("--llffhold", type=int, default=8,
                         help='will take every 1/N images as LLFF test set, paper uses 8')
-
-    # added: pngs flags
-    parser.add_arguement("--pngs_dir", type=str, default=None,
-                        help='directory of pngs to render')
-    parser.add_argument("--pngs_downsample", type=int, default=8,
-                        help='training and validating downsampled pngs')
-
+                        
     # logging/saving options
     parser.add_argument("--n_iters", type=int, default=100_000,
                         help='number of iterations to train for')

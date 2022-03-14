@@ -17,4 +17,5 @@ dependencies:
     - opencv-python
     - scikit-learn
     # may not be needed
+    - scikit-image
     - torchsummary 
