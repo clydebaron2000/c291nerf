@@ -18,7 +18,7 @@ from load_utils.load_deepvoxels import load_dv_data
 from load_utils.load_blender import load_blender_data
 from load_utils.load_LINEMOD import load_LINEMOD_data
 from load_utils.load_pictures import load_pictures
-from parser import config_parser 
+from nerf_utils.parser import config_parser 
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

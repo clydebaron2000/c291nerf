@@ -1,17 +1,27 @@
 torch>=1.8
 torchvision>=0.9.1
+numpy
+# progress bar for funs
+tqdm
+# image processing
 imageio
 imageio-ffmpeg
+# plots
 matplotlib
+# parsing
 configargparse
+# logging
 tensorboard>=2.0
-tqdm
+# cv2
 opencv-python
+# optional for model evaluation
 torchsummary
+# deps for scikit-learn
 ffmpeg 
 libsm6
 libxext6
 scikit-learn
-
+# extra?
+pytorch3d
 
 
