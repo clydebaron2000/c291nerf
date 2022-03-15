@@ -69,30 +69,30 @@ def batchify_rays(rays_flat, chunk=1024*32, **kwargs):
 
 
 def render(H, W, K, chunk=1024*32, rays=None, c2w=None, ndc=True,
-                  near=0., far=1.,
-                  use_viewdirs=False, c2w_staticcam=None,
+                near=0., far=1.,
+                use_viewdirs=False, c2w_staticcam=None,
                   **kwargs):
     """Render rays
     Args:
-      H: int. Height of image in pixels.
-      W: int. Width of image in pixels.
-      focal: float. Focal length of pinhole camera.
-      chunk: int. Maximum number of rays to process simultaneously. Used to
-        control maximum memory usage. Does not affect final results.
-      rays: array of shape [2, batch_size, 3]. Ray origin and direction for
-        each example in batch.
-      c2w: array of shape [3, 4]. Camera-to-world transformation matrix.
-      ndc: bool. If True, represent ray origin, direction in NDC coordinates.
-      near: float or array of shape [batch_size]. Nearest distance for a ray.
-      far: float or array of shape [batch_size]. Farthest distance for a ray.
-      use_viewdirs: bool. If True, use viewing direction of a point in space in model.
-      c2w_staticcam: array of shape [3, 4]. If not None, use this transformation matrix for 
-       camera while using other c2w argument for viewing directions.
+        H: int. Height of image in pixels.
+        W: int. Width of image in pixels.
+            focal: float. Focal length of pinhole camera.
+            chunk: int. Maximum number of rays to process simultaneously. Used to
+            control maximum memory usage. Does not affect final results.
+        rays: array of shape [2, batch_size, 3]. Ray origin and direction for
+            each example in batch.
+        c2w: array of shape [3, 4]. Camera-to-world transformation matrix.
+        ndc: bool. If True, represent ray origin, direction in NDC coordinates.
+        near: float or array of shape [batch_size]. Nearest distance for a ray.
+        far: float or array of shape [batch_size]. Farthest distance for a ray.
+        use_viewdirs: bool. If True, use viewing direction of a point in space in model.
+        c2w_staticcam: array of shape [3, 4]. If not None, use this transformation matrix for 
+        camera while using other c2w argument for viewing directions.
     Returns:
-      rgb_map: [batch_size, 3]. Predicted RGB values for rays.
-      disp_map: [batch_size]. Disparity map. Inverse of depth.
-      acc_map: [batch_size]. Accumulated opacity (alpha) along a ray.
-      extras: dict with everything returned by render_rays().
+        rgb_map: [batch_size, 3]. Predicted RGB values for rays.
+        disp_map: [batch_size]. Disparity map. Inverse of depth.
+        acc_map: [batch_size]. Accumulated opacity (alpha) along a ray.
+        extras: dict with everything returned by render_rays().
     """
     if c2w is not None:
         # special case to render full image
@@ -189,15 +189,15 @@ def create_nerf(args):
     output_ch = 5 if args.N_importance > 0 else 4
     skips = [4]
     model = NeRF(D=args.netdepth, W=args.netwidth,
-                 input_ch=input_ch, output_ch=output_ch, skips=skips,
-                 input_ch_views=input_ch_views, use_viewdirs=args.use_viewdirs).to(device)
+                    input_ch=input_ch, output_ch=output_ch, skips=skips,
+                    input_ch_views=input_ch_views, use_viewdirs=args.use_viewdirs).to(device)
     grad_vars = list(model.parameters())
 
     model_fine = None
     if args.N_importance > 0:
         model_fine = NeRF(D=args.netdepth_fine, W=args.netwidth_fine,
-                          input_ch=input_ch, output_ch=output_ch, skips=skips,
-                          input_ch_views=input_ch_views, use_viewdirs=args.use_viewdirs).to(device)
+                            input_ch=input_ch, output_ch=output_ch, skips=skips,
+                            input_ch_views=input_ch_views, use_viewdirs=args.use_viewdirs).to(device)
         grad_vars += list(model_fine.parameters())
 
     network_query_fn = lambda inputs, viewdirs, network_fn : run_network(inputs, viewdirs, network_fn,
@@ -322,33 +322,33 @@ def render_rays(ray_batch,
                 pytest=False):
     """Volumetric rendering.
     Args:
-      ray_batch: array of shape [batch_size, ...]. All information necessary
-        for sampling along a ray, including: ray origin, ray direction, min
-        dist, max dist, and unit-magnitude viewing direction.
-      network_fn: function. Model for predicting RGB and density at each point
-        in space.
-      network_query_fn: function used for passing queries to network_fn.
-      N_samples: int. Number of different times to sample along each ray.
-      retraw: bool. If True, include model's raw, unprocessed predictions.
-      lindisp: bool. If True, sample linearly in inverse depth rather than in depth.
-      perturb: float, 0 or 1. If non-zero, each ray is sampled at stratified
-        random points in time.
-      N_importance: int. Number of additional times to sample along each ray.
-        These samples are only passed to network_fine.
-      network_fine: "fine" network with same spec as network_fn.
-      white_bkgd: bool. If True, assume a white background.
-      raw_noise_std: ...
-      verbose: bool. If True, print more debugging info.
+        ray_batch: array of shape [batch_size, ...]. All information necessary
+            for sampling along a ray, including: ray origin, ray direction, min
+            dist, max dist, and unit-magnitude viewing direction.
+        network_fn: function. Model for predicting RGB and density at each point
+            in space.
+        network_query_fn: function used for passing queries to network_fn.
+        N_samples: int. Number of different times to sample along each ray.
+        retraw: bool. If True, include model's raw, unprocessed predictions.
+        lindisp: bool. If True, sample linearly in inverse depth rather than in depth.
+        perturb: float, 0 or 1. If non-zero, each ray is sampled at stratified
+            random points in time.
+        N_importance: int. Number of additional times to sample along each ray.
+            These samples are only passed to network_fine.
+        network_fine: "fine" network with same spec as network_fn.
+        white_bkgd: bool. If True, assume a white background.
+        raw_noise_std: ...
+        verbose: bool. If True, print more debugging info.
     Returns:
-      rgb_map: [num_rays, 3]. Estimated RGB color of a ray. Comes from fine model.
-      disp_map: [num_rays]. Disparity map. 1 / depth.
-      acc_map: [num_rays]. Accumulated opacity along each ray. Comes from fine model.
-      raw: [num_rays, num_samples, 4]. Raw predictions from model.
-      rgb0: See rgb_map. Output for coarse model.
-      disp0: See disp_map. Output for coarse model.
-      acc0: See acc_map. Output for coarse model.
-      z_std: [num_rays]. Standard deviation of distances along ray for each
-        sample.
+        rgb_map: [num_rays, 3]. Estimated RGB color of a ray. Comes from fine model.
+        disp_map: [num_rays]. Disparity map. 1 / depth.
+        acc_map: [num_rays]. Accumulated opacity along each ray. Comes from fine model.
+        raw: [num_rays, num_samples, 4]. Raw predictions from model.
+        rgb0: See rgb_map. Output for coarse model.
+        disp0: See disp_map. Output for coarse model.
+        acc0: See acc_map. Output for coarse model.
+        z_std: [num_rays]. Standard deviation of distances along ray for each
+            sample.
     """
     N_rays = ray_batch.shape[0]
     rays_o, rays_d = ray_batch[:,0:3], ray_batch[:,3:6] # [N_rays, 3] each
@@ -429,8 +429,8 @@ def train():
     K = None
     if args.dataset_type == 'llff':
         images, poses, bds, render_poses, i_test = load_llff_data(args.datadir, args.factor,
-                                                                  recenter=True, bd_factor=.75,
-                                                                  spherify=args.spherify)
+                                                                    recenter=True, bd_factor=.75,
+                                                                    spherify=args.spherify)
         hwf = poses[0,:3,-1]
         poses = poses[:,:3,:4]
         print('Loaded llff', images.shape, render_poses.shape, hwf, args.datadir)
@@ -482,8 +482,8 @@ def train():
     elif args.dataset_type == 'deepvoxels':
 
         images, poses, render_poses, hwf, i_split = load_dv_data(scene=args.shape,
-                                                                 basedir=args.datadir,
-                                                                 testskip=args.testskip)
+                                                                    basedir=args.datadir,
+                                                                    testskip=args.testskip)
 
         print('Loaded deepvoxels', images.shape, render_poses.shape, hwf, args.datadir)
         i_train, i_val, i_test = i_split
@@ -494,8 +494,8 @@ def train():
 
     elif args.dataset_type == 'pictures':
         images, poses, render_poses, hwf, i_split = load_pictures(args.datadir, 
-                                                                  args.render_factor,
-                                                                  args.render_poses)
+                                                                    args.render_factor,
+                                                                    args.render_poses)
         i_train, i_val, i_test = i_split
         # recommeded by piazza
         near = 1.
