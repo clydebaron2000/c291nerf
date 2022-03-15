@@ -1,4 +1,4 @@
 git clone https://github.com/clydebaron2000/c291nerf.git
 cd c291nerf
-bsah ./setup/set_up.sh
+bash ./set_up.sh
 bash ./run.sh

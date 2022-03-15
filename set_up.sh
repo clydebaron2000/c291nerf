@@ -1,7 +1,10 @@
 echo "installing pip"
 apt-get install pip
 echo "setting up environment"
-pip install -r requirements.txt
+# needed for sklearn
+apt-get install piplibsm6
+apt-get install libxext6
+pip install -r ./setup/requirements.txt
 echo "\t downloading unzip"
 apt-get install unzip
 echo "\t installing wget"
