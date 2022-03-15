@@ -5,6 +5,8 @@ dataset_type = pictures
 
 half_res = True
 no_batching = True
+render_predictions = True
+i_img = 100
 
 random_seed = 1234
 

@@ -27,6 +27,7 @@ def load_pictures(basedir='./data/', downsample=8, render_poses = None):
         render_poses = test_poses
     render_poses = np.asarray(render_poses)
 
+        
     train_imgs = sorted([fname for fname in all_imgs_fnames if 'train' in fname])
     val_imgs = sorted([fname for fname in all_imgs_fnames if 'val' in fname])
     test_imgs = sorted([fname for fname in all_imgs_fnames if 'test' in fname])
@@ -48,7 +49,7 @@ def load_pictures(basedir='./data/', downsample=8, render_poses = None):
             img = resize(img, (img.shape[0]//downsample,img.shape[1]//downsample))
             last_valid_index_shape = img.shape
         else:
-            # img = np.empty(last_valid_index_shape)
+#             img = np.empty(last_valid_index_shape)
             continue
         imgs.append(img)
         
@@ -70,10 +71,11 @@ def load_pictures(basedir='./data/', downsample=8, render_poses = None):
     int_dir = os.path.join(basedir, 'intrinsics.txt')
     intrinsic = np.asarray(txt_to_array(int_dir))
     focal = intrinsic[0,0]
+    
+#     todo: near and far params
+# x_min y_min z_min x_max y_max z_max some_not_related_value
+# You could set your near far values according to the bounding box size and you coordinate parameterization. 
 
-    # TODO: near and far params
-    # x_min y_min z_min x_max y_max z_max some_not_related_value
-    # You could set your near far values according to the bounding box size and you coordinate parameterization. 
 
-        
+    
     return imgs, poses, render_poses, [H, W, focal], i_split

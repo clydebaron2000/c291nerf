@@ -529,6 +529,8 @@ def train():
     basedir = args.basedir
     expname = args.expname
     os.makedirs(os.path.join(basedir, expname), exist_ok=True)
+    # added
+    os.makedirs(os.path.join(basedir, 'imgs'), exist_ok=True)
     f = os.path.join(basedir, expname, 'args.txt')
     with open(f, 'w') as file:
         for arg in sorted(vars(args)):
@@ -669,6 +671,9 @@ def train():
         trans = extras['raw'][...,-1]
         loss = img_loss
         psnr = mse2psnr(img_loss)
+        
+        if args.render_predictions and i % args.i_img==0:
+            imageio.imwrite(f'./logs/imgs/{i}-pred.png', rgb)
 
         if 'rgb0' in extras:
             img_loss0 = img2mse(extras['rgb0'], target_s)
