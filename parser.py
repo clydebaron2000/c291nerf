@@ -69,6 +69,8 @@ def config_parser():
                         help='render the test set instead of render_poses path')
     parser.add_argument("--render_factor", type=int, default=0,
                         help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
+    parser.add_argument("--render_poses", type=list, default=0,
+                        help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
 
     # dataset options
     parser.add_argument("--dataset_type", type=str, default='llff',
@@ -101,8 +103,6 @@ def config_parser():
     # logging/saving options
     parser.add_argument("--n_iters", type=int, default=100_000,
                         help='number of iterations to train for')
-    parser.add_argument("--log_iters_test", type=list, default=[10_000,20_000,30_000,40_000,50_000,60_000,70_000,80_000,90_000,100_000],
-                        help="list of iterations to log")
     parser.add_argument("--i_print",   type=int, default=100,
                         help='frequency of console printout and metric loggin')
     parser.add_argument("--i_img",     type=int, default=500,

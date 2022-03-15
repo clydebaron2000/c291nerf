@@ -11,14 +11,14 @@ from tqdm import tqdm, trange
 
 import matplotlib.pyplot as plt
 
-from run_nerf_helpers import *
+from nerf_utils.run_nerf_helpers import *
 
-from load_llff import load_llff_data
-from load_deepvoxels import load_dv_data
-from load_blender import load_blender_data
-from load_LINEMOD import load_LINEMOD_data
-from load_pictures import load_pictures
-from utils.parser import config_parser 
+from load_utils.load_llff import load_llff_data
+from load_utils.load_deepvoxels import load_dv_data
+from load_utils.load_blender import load_blender_data
+from load_utils.load_LINEMOD import load_LINEMOD_data
+from load_utils.load_pictures import load_pictures
+from parser import config_parser 
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -496,6 +496,14 @@ def train():
         images, poses, render_poses, hwf, i_split = load_pictures(args.datadir, 
                                                                   args.render_factor,
                                                                   args.render_poses)
+        i_train, i_val, i_test = i_split
+        # recommeded by piazza
+        near = 1.
+        far = 5.
+        if not args.white_bkgd:
+            images = images[...,:3]*images[...,-1:] + (1.-images[...,-1:])
+        else:
+            images = images[...,:3]
         print(f'Loaded picture directory {args.datadir}', images.shape, render_poses.shape, hwf, args.datadir)
     else:
         print('Unknown dataset type', args.dataset_type, 'exiting')
@@ -592,7 +600,7 @@ def train():
         rays_rgb = torch.Tensor(rays_rgb).to(device)
 
 
-    N_iters = parser.n_iters + 1
+    N_iters = args.n_iters + 1
     print('Begin')
     print('TRAIN views are', i_train)
     print('TEST views are', i_test)

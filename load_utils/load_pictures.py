@@ -8,7 +8,7 @@ def txt_to_array(path):
     with open(path) as file:
         return [[float(word.strip()) for word in line.split(' ')] for line in file]
 
-def load_pictures(basedir='./data/', downsample=8, render_poses = []):
+def load_pictures(basedir='./data/', downsample=8, render_poses = None):
     # render_poses = ['2_test_0000','2_test_0016','2_test_0055','2_test_0093','2_test_0160']
     # loading images
     imgs_dir = os.path.join(basedir, 'rgb')
@@ -25,6 +25,7 @@ def load_pictures(basedir='./data/', downsample=8, render_poses = []):
         render_poses = sorted([fname for fname in all_poses_fnames if any([filter in fname for filter in render_poses])])
     else:
         render_poses = test_poses
+    render_poses = np.asarray(render_poses)
 
     train_imgs = sorted([fname for fname in all_imgs_fnames if 'train' in fname])
     val_imgs = sorted([fname for fname in all_imgs_fnames if 'val' in fname])
@@ -36,7 +37,7 @@ def load_pictures(basedir='./data/', downsample=8, render_poses = []):
     # 
     all_imgs = train_imgs + val_imgs + test_imgs
     all_poses = train_poses + val_poses + test_poses
-    counts = [0, len(train_poses),len(all_poses)]
+    counts = [0, len(train_poses),len(train_poses)+len(val_poses),len(all_poses)]
     i_split = [np.arange(counts1, counts2) for counts1, counts2 in zip(counts,counts[1:])]
     
     imgs = [] 
@@ -47,20 +48,32 @@ def load_pictures(basedir='./data/', downsample=8, render_poses = []):
             img = resize(img, (img.shape[0]//downsample,img.shape[1]//downsample))
             last_valid_index_shape = img.shape
         else:
-            img = np.empty(last_valid_index_shape)
+            # img = np.empty(last_valid_index_shape)
+            continue
         imgs.append(img)
         
     imgs = np.asarray(imgs).astype(np.float32)
 
-    poses = np.asarray(
-        [txt_to_array(fname)  
-        for fname in all_poses]
-        ).astype(np.float32)
+    poses = []
+    for fname in all_poses:
+        pose = np.asarray(txt_to_array(fname))
+        pose[:, 1:3] *= -1
+        poses.append(pose.tolist())
+#     poses = np.asarray(
+#         [txt_to_array(fname)  
+#         for fname in all_poses]
+#         ).astype(np.float32)
+    poses = np.asarray(poses).astype(np.float32)
     
     H, W = imgs[0].shape[:2]
 
     int_dir = os.path.join(basedir, 'intrinsics.txt')
     intrinsic = np.asarray(txt_to_array(int_dir))
     focal = intrinsic[0,0]
+
+    # TODO: near and far params
+    # x_min y_min z_min x_max y_max z_max some_not_related_value
+    # You could set your near far values according to the bounding box size and you coordinate parameterization. 
+
         
     return imgs, poses, render_poses, [H, W, focal], i_split

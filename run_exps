@@ -1,2 +1,0 @@
-python run_nerf.py bottles.txt
-python run_nerf.py lego.txt
