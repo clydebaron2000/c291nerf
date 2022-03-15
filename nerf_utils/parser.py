@@ -67,6 +67,8 @@ def config_parser():
                         help='do not optimize, reload weights and render out render_poses path')
     parser.add_argument("--render_test", action='store_true',
                         help='render the test set instead of render_poses path')
+    parser.add_argument("--render_predictions", action='store_true',
+                        help='render the network predictions as specified by --i_img')
     parser.add_argument("--render_factor", type=int, default=0,
                         help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
     parser.add_argument("--render_poses", type=list, default=0,

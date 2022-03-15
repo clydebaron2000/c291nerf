@@ -19,6 +19,7 @@ torchsummary
 # deps for scikit-learn
 ffmpeg 
 scikit-learn
+scikit-image
 # extra?
 pytorch3d
 
