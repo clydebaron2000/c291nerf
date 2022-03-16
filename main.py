@@ -679,7 +679,7 @@ def train():
             # rgb_out = rgb_out.reshape((H,W,3))
             # TODO
             # imageio.imwrite(f'./logs/imgs/{i}-pred.png', rgb_out)
-            render_path(render_poses, hwf, K, args.chunk, 
+            render_path(render_poses, hwf, K, args.chunk, **render_kwargs_train,
                         savedir=args.render_predictions_dir, 
                         render_factor = args.render_factor,
                         img_prefix=f'iter_{i}_')
