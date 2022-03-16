@@ -25,10 +25,7 @@ def load_pictures(args):
     val_poses = sorted([fname for fname in all_poses_fnames if 'val' in fname])
     test_poses = sorted([fname for fname in all_poses_fnames if 'test' in fname])
     
-    if render_poses is not None:
-        render_poses = sorted([fname for fname in all_poses_fnames if any([filter in fname for filter in render_poses])])
-    else:
-        render_poses = test_poses
+    render_poses = test_poses
     render_poses = np.asarray(render_poses)
 
         
@@ -76,11 +73,7 @@ def load_pictures(args):
     K = np.asarray(txt_to_array(int_path))
     focal = K[0,0]
 
-    if args.half_res:
-        H = H//2
-        W = W//2
-        focal = focal/2.
-    
+  
     # todo: near and far params
     # x_min y_min z_min x_max y_max z_max some_not_related_value
     # You could set your near far values according to the bounding box size and you coordinate parameterization. 
