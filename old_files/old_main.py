@@ -427,6 +427,7 @@ def train():
 
     parser = config_parser()
     args = parser.parse_args()
+    # does not work as intended
     device = torch.device(assign_free_gpus())
     # Load data
     K = None
