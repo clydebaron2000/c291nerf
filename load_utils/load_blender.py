@@ -38,7 +38,12 @@ def pose_spherical(theta, phi, radius):
     return c2w
 
 
-def load_blender_data(basedir, half_res=False, testskip=1):
+def load_blender_data(args):
+    
+    basedir = args.basedir
+    half_res = args.half_res
+    testskip = args.testskip
+
     splits = ['train', 'val', 'test']
     metas = {}
     for s in splits:
@@ -90,4 +95,4 @@ def load_blender_data(basedir, half_res=False, testskip=1):
         # imgs = tf.image.resize_area(imgs, [400, 400]).numpy()
 
         
-    return imgs, poses, render_poses, [H, W, focal], i_split
+    return imgs, poses, render_poses, [H, W, focal], None, i_split, 2., 6.

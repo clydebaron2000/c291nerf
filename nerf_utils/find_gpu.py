@@ -1,16 +1,19 @@
+########################################################################################################################
+#  modified gist from https://gist.github.com/afspies/7e211b83ca5a8902849b05ded9a10696
+########################################################################################################################
 
 import os
 import subprocess
 # This function should be called after all imports,
 # in case you are setting CUDA_AVAILABLE_DEVICES elsewhere
-def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=4):
+def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=2):
     """Assigns free gpus to the current process via the CUDA_AVAILABLE_DEVICES env variable
     Args:
         threshold_vram_usage (int, optional): A GPU is considered free if the vram usage is below the threshold
-                                              Defaults to 1500 (MiB).
+                                            Defaults to 1500 (MiB).
                                               
         max_gpus (int, optional): Max GPUs is the maximum number of gpus to assign.
-                                  Defaults to 2.
+                                Defaults to 2.
     """
     # Get the list of GPUs via nvidia-smi
     smi_query_result = subprocess.check_output('nvidia-smi -q -d Memory | grep -A4 GPU', shell=True)

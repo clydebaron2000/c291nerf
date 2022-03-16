@@ -1,5 +1,5 @@
 ########################################################################################################################
-# From nerf-pytorch repo
+# inspired by nerf-pytorch repo
 ########################################################################################################################
 
 import numpy as np
@@ -244,9 +244,12 @@ def spherify_poses(poses, bds):
     return poses_reset, new_poses, bds
     
 
-def load_llff_data(basedir, factor=8, recenter=True, bd_factor=.75, spherify=False, path_zflat=False):
+def load_llff_data(args, recenter=True, bd_factor=.75, spherify=False, path_zflat=False):
     
-
+    basedir = args.datadir
+    factor = args.factor
+    spherify = args.spherify
+    
     poses, bds, imgs = _load_data(basedir, factor=factor) # factor=8 downsamples original imgs by 8x
     print('Loaded', basedir, bds.min(), bds.max())
     
@@ -317,6 +320,30 @@ def load_llff_data(basedir, factor=8, recenter=True, bd_factor=.75, spherify=Fal
     images = images.astype(np.float32)
     poses = poses.astype(np.float32)
 
-    return images, poses, bds, render_poses, i_test
+    hwf = poses[0,:3,-1]
+    poses = poses[:,:3,:4]
+    print('Loaded llff', images.shape, render_poses.shape, hwf, args.datadir)
+    if not isinstance(i_test, list):
+        i_test = [i_test]
+    
+    if args.llffhold > 0:
+        print('Auto LLFF holdout,', args.llffhold)
+        i_test = np.arange(images.shape[0])[::args.llffhold]
+    i_val = i_test
+    i_train = np.array([i for i in np.arange(int(images.shape[0])) if
+                    (i not in i_test and i not in i_val)])
+
+    print('DEFINING BOUNDS')
+    if args.no_ndc:
+        near = np.ndarray.min(bds) * .9
+        far = np.ndarray.max(bds) * 1.
+        
+    else:
+        near = 0.
+        far = 1.
+    print('NEAR FAR', near, far)
+    i_split = [i_train, i_val, i_test]
+    
+    return images, poses, render_poses, hwf, None, i_split, near, far
 
 

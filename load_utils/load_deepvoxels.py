@@ -1,5 +1,5 @@
 ########################################################################################################################
-# From nerf-pytorch repo
+# inspired by nerf-pytorch repo
 ########################################################################################################################
 
 import os
@@ -7,8 +7,11 @@ import numpy as np
 import imageio 
 
 
-def load_dv_data(scene='cube', basedir='/data/deepvoxels', testskip=8):
+def load_dv_data(args):
     
+    scene = args.shape
+    basedir = args.datadir
+    testskip = args.testskip
 
     def parse_intrinsics(filepath, trgt_sidelength, invert_y=False):
         # Get camera intrinsics
@@ -43,9 +46,9 @@ def load_dv_data(scene='cube', basedir='/data/deepvoxels', testskip=8):
 
         # Build the intrinsic matrices
         full_intrinsic = np.array([[fx, 0., cx, 0.],
-                                   [0., fy, cy, 0],
-                                   [0., 0, 1, 0],
-                                   [0, 0, 0, 1]])
+                                    [0., fy, cy, 0],
+                                    [0., 0, 1, 0],
+                                    [0, 0, 0, 1]])
 
         return full_intrinsic, grid_barycenter, scale, near_plane, world2cam_poses
 
@@ -109,4 +112,8 @@ def load_dv_data(scene='cube', basedir='/data/deepvoxels', testskip=8):
     
     print(poses.shape, imgs.shape)
     
-    return imgs, poses, render_poses, [H,W,focal], i_split
+    hemi_R = np.mean(np.linalg.norm(poses[:,:3,-1], axis=-1))
+    near = hemi_R-1.
+    far = hemi_R+1.
+
+    return imgs, poses, render_poses, [H,W,focal], None, i_split, near, far

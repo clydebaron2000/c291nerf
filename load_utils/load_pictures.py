@@ -8,7 +8,11 @@ def txt_to_array(path):
     with open(path) as file:
         return [[float(word.strip()) for word in line.split(' ')] for line in file]
 
-def load_pictures(basedir='./data/', downsample=1, render_poses = None):
+def load_pictures(args):
+    basedir = args.datadir
+    downsample = args.render_factor
+    render_poses = args.render_poses
+
     # render_poses = ['2_test_0000','2_test_0016','2_test_0055','2_test_0093','2_test_0160']
     # loading images
     imgs_dir = os.path.join(basedir, 'rgb')
@@ -68,14 +72,27 @@ def load_pictures(basedir='./data/', downsample=1, render_poses = None):
     
     H, W = imgs[0].shape[:2]
 
-    int_dir = os.path.join(basedir, 'intrinsics.txt')
-    intrinsic = np.asarray(txt_to_array(int_dir))
-    focal = intrinsic[0,0]
+    int_path = os.path.join(basedir, 'intrinsics.txt')
+    K = np.asarray(txt_to_array(int_path))
+    focal = K[0,0]
     
-#     todo: near and far params
-# x_min y_min z_min x_max y_max z_max some_not_related_value
-# You could set your near far values according to the bounding box size and you coordinate parameterization. 
+    # todo: near and far params
+    # x_min y_min z_min x_max y_max z_max some_not_related_value
+    # You could set your near far values according to the bounding box size and you coordinate parameterization. 
 
+    bbox_path = os.path.join(basedir, 'bbox.txt')
+    bounds = np.asarray(txt_to_array(bbox_path)[0])
+    min_corner, max_corner = bounds[:3],bounds[3:-1]
+    trans = poses[...,:3,-1]
+    camera_radius = np.max(np.diag(trans @ trans.T)**.5)
+    largest_obj_rad = np.max([np.linalg.norm(min_corner),np.linalg.norm(max_corner)])    
 
+    near = np.floor(camera_radius - largest_obj_rad) - 1
+    far = np.ceil(camera_radius + largest_obj_rad) + 1
+
+    # recommended by piazza
+    # near = 1.
+    # far = 5.
+    # actual 0. , 6.
     
-    return imgs, poses, render_poses, [H, W, focal], i_split
+    return imgs, poses, render_poses, [H, W, focal], K, i_split, near, far

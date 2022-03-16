@@ -1,5 +1,5 @@
 ########################################################################################################################
-# From nerf-pytorch repo
+# inspired by nerf-pytorch repo
 ########################################################################################################################
 
 import os
@@ -38,7 +38,12 @@ def pose_spherical(theta, phi, radius):
     return c2w
 
 
-def load_LINEMOD_data(basedir, half_res=False, testskip=1):
+def load_LINEMOD_data(args):
+    
+    basedir = args.basedir
+    half_res = args.half_res
+    testskip = args.testskip
+    
     splits = ['train', 'val', 'test']
     metas = {}
     for s in splits:
