@@ -429,7 +429,8 @@ def train():
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
     i_train, i_val, i_test = i_split
     H, W, _ = hwf 
-
+    
+    
     # Create log dir and copy the config file
     basedir = args.basedir
     expname = args.expname
@@ -698,6 +699,11 @@ def train():
 
 
 if __name__=='__main__':
+    parser = config_parser()
+    args = parser.parse_args()
+
+    device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
     torch.set_default_tensor_type('torch.cuda.FloatTensor')
-    train()
+    print(f'using device {device}')
+    train(args)
     

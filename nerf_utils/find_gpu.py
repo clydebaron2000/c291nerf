@@ -27,7 +27,7 @@ def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=2):
     if not gpus_to_use:
         print('No free GPUs found')
         return "cpu"
-    os.environ['CUDA_VISIBLE_DEVICES'] = gpus_to_use
+#     os.environ['CUDA_VISIBLE_DEVICES'] = gpus_to_use
     return f'cuda:{gpus_to_use[0]}'  
 if __name__ == '__main__':
     assign_free_gpus()
