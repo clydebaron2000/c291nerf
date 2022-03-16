@@ -1,0 +1,33 @@
+expname = bottles_test_no_white_flag
+basedir = ./logs
+datadir = ./data/bottles
+dataset_type = pictures
+
+gpu = 1
+
+half_res = True
+no_batching = True
+
+random_seed = 1234
+
+N_samples = 64
+N_importance = 64
+
+use_viewdirs = True
+
+white_bkgd = False
+
+i_testset = 100
+
+render_test = True
+render_factor = 1
+N_rand = 256
+
+netwidth = 128
+netdepth = 8
+
+chunk = 8192
+netchunk = 16384
+
+i_weights = 10000
+n_iters = 100000
