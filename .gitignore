@@ -8,7 +8,11 @@
 data/*
 logs/imgs
 logs/*test*/*
-!logs/*/*.tar
+!logs/*/100000.tar
+!logs/*/200000.tar
+!logs/*/300000.tar
+!logs/*/400000.tar
+!logs/*/500000.tar
 !logs/*/*.mp4
 !logs/*/*.txt
 .env
