@@ -11,5 +11,6 @@ then simply run `python main.py --config ./configs/<EXPERIMENT NAME>` or modify 
 
 Additionally, if you want to instantly run the code with default configs in `configs`, copy-paste the contents of `clone_and_run.sh` into your terminal.
 
----
-Clyde Baron Rapinan
+# contributors 
+- created by [clydebaron2000](https://github.com/clydebaron2000)
+- consulted with [jonzamora](https://github.com/jonzamora)
