@@ -15,8 +15,6 @@ from nerf_utils.run_nerf_helpers import *
 
 from load_utils.data_loader import load_data
 from nerf_utils.parser import config_parser 
-from nerf_utils.find_gpu import assign_free_gpus
-
 
 np.random.seed(0)
 DEBUG = False
@@ -423,7 +421,7 @@ def render_rays(ray_batch,
 def train():
 
     parser = config_parser()
-    args = parser.parse_args
+    args = parser.parse_args()
 
     device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
     print(f'using device {device}')
