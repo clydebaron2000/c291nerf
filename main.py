@@ -418,13 +418,7 @@ def render_rays(ray_batch,
     return ret
 
 
-def train():
-
-    parser = config_parser()
-    args = parser.parse_args()
-
-    device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
-    print(f'using device {device}')
+def train(args):
 
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
     i_train, i_val, i_test = i_split
@@ -489,6 +483,10 @@ def train():
         print('get rays')
         rays = np.stack([get_rays_np(H, W, K, p) for p in poses[:,:3,:4]], 0) # [N, ro+rd, H, W, 3]
         print('done, concats')
+        # added for bottles dataset
+        if rays.shape[0] > images[:,None].shape[0]:
+            rays = rays[:images[:,None].shape[0]]
+        print(rays.shape, images[:,None].shape)
         rays_rgb = np.concatenate([rays, images[:,None]], 1) # [N, ro+rd+rgb, H, W, 3]
         rays_rgb = np.transpose(rays_rgb, [0,2,3,1,4]) # [N, H, W, ro+rd+rgb, 3]
         rays_rgb = np.stack([rays_rgb[i] for i in i_train], 0) # train images only
