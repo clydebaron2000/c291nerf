@@ -14,10 +14,10 @@ Additionally, if you want to instantly run the code with default configs in `con
 # results 
 
 bottles.txt:
-![bottles](./logs/bottles_test/bottles_test_spiral_100000_rgb.mp4)
+![bottles](https://github.com/clydebaron2000/c291nerf/tree/main/logs/bottles_test/bottles_test_spiral_100000_rgb.mp4)
 
 lego.txt:
-![lego](./logs/lego_test/lego_test_spiral_100000_rgb.mp4)
+![lego](https://github.com/clydebaron2000/c291nerf/tree/main/logs/lego_test/lego_test_spiral_100000_rgb.mp4)
 
 # contributors 
 - created by [clydebaron2000](https://github.com/clydebaron2000)
