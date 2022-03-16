@@ -540,7 +540,6 @@ def train(args):
             pose = poses[img_i, :3,:4]
 
             if N_rand is not None:
-                print(pose.get_device())
                 rays_o, rays_d = get_rays(H, W, K, torch.Tensor(pose))  # (H, W, 3), (H, W, 3)
 
                 if i < args.precrop_iters:
