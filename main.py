@@ -137,7 +137,7 @@ def render(H, W, K, chunk=1024*32, rays=None, c2w=None, ndc=True,
     return ret_list + [ret_dict]
 
 
-def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedir=None, render_factor=0):
+def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedir=None, render_factor=0, img_prefix=''):
 
     H, W, focal = hwf
 
@@ -168,7 +168,7 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedi
 
         if savedir is not None:
             rgb8 = to8b(rgbs[-1])
-            filename = os.path.join(savedir, '{:03d}.png'.format(i))
+            filename = os.path.join(savedir, img_prefix+'{:03d}.png'.format(i))
             imageio.imwrite(filename, rgb8)
 
 
@@ -179,7 +179,8 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedi
 
 
 def create_nerf(args):
-    """Instantiate NeRF's MLP model.
+    """
+    Instantiate NeRF's MLP model.
     """
     embed_fn, input_ch = get_embedder(args.multires, args.i_embed)
 
@@ -259,6 +260,7 @@ def create_nerf(args):
     render_kwargs_test['perturb'] = False
     render_kwargs_test['raw_noise_std'] = 0.
 
+    # change render_kwargs_train
     return render_kwargs_train, render_kwargs_test, start, grad_vars, optimizer
 
 
@@ -673,7 +675,15 @@ def train():
         psnr = mse2psnr(img_loss)
         
         if args.render_predictions and i % args.i_img==0:
-            imageio.imwrite(f'./logs/imgs/{i}-pred.png', rgb)
+            # rgb_out = to8b(disp.cpu().detach().numpy())
+            # rgb_out = rgb_out.reshape((H,W,3))
+            # TODO
+            # imageio.imwrite(f'./logs/imgs/{i}-pred.png', rgb_out)
+            render_path(render_poses, hwf, K, args.chunk, 
+                        savedir=args.render_predictions_dir, 
+                        render_factor = args.render_factor,
+                        img_prefix=f'iter_{i}_')
+
 
         if 'rgb0' in extras:
             img_loss0 = img2mse(extras['rgb0'], target_s)

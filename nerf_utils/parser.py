@@ -69,6 +69,8 @@ def config_parser():
                         help='render the test set instead of render_poses path')
     parser.add_argument("--render_predictions", action='store_true',
                         help='render the network predictions as specified by --i_img')
+    parser.add_argument("--render_predictions_dir", type=str, default='./logs/imgs',
+                        help='render the network predictions as specified by --i_img')
     parser.add_argument("--render_factor", type=int, default=0,
                         help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
     parser.add_argument("--render_poses", type=list, default=None,
