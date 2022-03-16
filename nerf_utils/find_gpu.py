@@ -11,7 +11,6 @@ def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=2):
     Args:
         threshold_vram_usage (int, optional): A GPU is considered free if the vram usage is below the threshold
                                             Defaults to 1500 (MiB).
-                                              
         max_gpus (int, optional): Max GPUs is the maximum number of gpus to assign.
                                 Defaults to 2.
     """
@@ -24,11 +23,11 @@ def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=2):
     gpu_info = gpu_info[:min(max_gpus, len(gpu_info))] # Limit to max_gpus
     # Assign free gpus to the current process
     gpus_to_use = ','.join([str(i) for i, x in enumerate(gpu_info) if x < threshold_vram_usage])
-    # os.environ['CUDA_VISIBLE_DEVICES'] = gpus_to_use
     # print(f'Using GPU(s): {gpus_to_use}' if gpus_to_use else 'No free GPUs found')
     if not gpus_to_use:
         print('No free GPUs found')
         return "cpu"
+    os.environ['CUDA_VISIBLE_DEVICES'] = gpus_to_use
     return f'cuda:{gpus_to_use[0]}'  
 if __name__ == '__main__':
     assign_free_gpus()

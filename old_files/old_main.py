@@ -21,7 +21,7 @@ from load_utils.load_pictures import load_pictures
 from nerf_utils.parser import config_parser 
 from nerf_utils.find_gpu import assign_free_gpus
 
-device = torch.device(assign_free_gpus())
+
 np.random.seed(0)
 DEBUG = False
 
@@ -38,8 +38,7 @@ def batchify(fn, chunk):
 
 
 def run_network(inputs, viewdirs, fn, embed_fn, embeddirs_fn, netchunk=1024*64):
-    """
-    Prepares inputs and applies network 'fn'.
+    """Prepares inputs and applies network 'fn'.
     """
     inputs_flat = torch.reshape(inputs, [-1, inputs.shape[-1]])
     embedded = embed_fn(inputs_flat)
@@ -427,8 +426,8 @@ def render_rays(ray_batch,
 def train():
 
     parser = config_parser()
-    args = parser.parse_args()
-
+    args = parser.parse_args(f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu')
+    device = torch.device()
     # Load data
     K = None
     if args.dataset_type == 'llff':

@@ -40,7 +40,7 @@ def pose_spherical(theta, phi, radius):
 
 def load_LINEMOD_data(args):
     
-    basedir = args.basedir
+    basedir = args.datadir
     half_res = args.half_res
     testskip = args.testskip
     

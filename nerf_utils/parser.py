@@ -10,7 +10,8 @@ def config_parser():
                         help='where to store ckpts and logs')
     parser.add_argument("--datadir", type=str,
                         default='./data/llff/fern', help='input data directory')
-
+    parser.add_argument("--gpu", type=int, default=0,
+                        help='gpu assignment')
     # training options
     parser.add_argument("--netdepth", type=int, default=8,
                         help='layers in network')
