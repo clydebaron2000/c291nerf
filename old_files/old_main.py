@@ -426,8 +426,9 @@ def render_rays(ray_batch,
 def train():
 
     parser = config_parser()
-    args = parser.parse_args(f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu')
-    device = torch.device()
+    args = parser.parse_args()
+    # does not work as intended
+    device = torch.device(assign_free_gpus())
     # Load data
     K = None
     if args.dataset_type == 'llff':

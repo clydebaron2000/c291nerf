@@ -15,8 +15,6 @@ from nerf_utils.run_nerf_helpers import *
 
 from load_utils.data_loader import load_data
 from nerf_utils.parser import config_parser 
-from nerf_utils.find_gpu import assign_free_gpus
-
 
 np.random.seed(0)
 DEBUG = False
@@ -420,12 +418,17 @@ def render_rays(ray_batch,
     return ret
 
 
-def train(args):
+def train():
+
+    parser = config_parser()
+    args = parser.parse_args()
+
+    device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
+    print(f'using device {device}')
 
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
     i_train, i_val, i_test = i_split
     H, W, _ = hwf 
-    
     
     # Create log dir and copy the config file
     basedir = args.basedir
@@ -475,7 +478,7 @@ def train(args):
             rgbs, _ = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
             print('Done rendering', testsavedir)
             imageio.mimwrite(os.path.join(testsavedir, 'video.mp4'), to8b(rgbs), fps=30, quality=8)
-
+            # early break
             return
 
     # Prepare raybatch tensor if batching random rays
@@ -570,19 +573,19 @@ def train(args):
 
         optimizer.zero_grad()
         img_loss = img2mse(rgb, target_s)
-        trans = extras['raw'][...,-1]
+        # trans = extras['raw'][...,-1]
         loss = img_loss
         psnr = mse2psnr(img_loss)
         
-        if args.render_predictions and i % args.i_img==0:
-            # rgb_out = to8b(disp.cpu().detach().numpy())
-            # rgb_out = rgb_out.reshape((H,W,3))
-            # TODO
-            # imageio.imwrite(f'./logs/imgs/{i}-pred.png', rgb_out)
-            render_path(render_poses, hwf, K, args.chunk, render_kwargs_train,
-                        savedir=args.render_predictions_dir, 
-                        render_factor = args.render_factor,
-                        img_prefix=f'iter_{i}_')
+        # if args.render_predictions and i % args.i_img==0:
+        #     # rgb_out = to8b(disp.cpu().detach().numpy())
+        #     # rgb_out = rgb_out.reshape((H,W,3))
+        #     # TODO
+        #     # imageio.imwrite(f'./logs/imgs/{i}-pred.png', rgb_out)
+        #     render_path(render_poses, hwf, K, args.chunk, render_kwargs_train,
+        #                 savedir=args.render_predictions_dir, 
+        #                 render_factor = args.render_factor,
+        #                 img_prefix=f'iter_{i}_')
 
 
         if 'rgb0' in extras:
