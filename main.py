@@ -19,9 +19,9 @@ from load_utils.load_blender import load_blender_data
 from load_utils.load_LINEMOD import load_LINEMOD_data
 from load_utils.load_pictures import load_pictures
 from nerf_utils.parser import config_parser 
+from nerf_utils.find_gpu import assign_free_gpus
 
-
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device(assign_free_gpus())
 np.random.seed(0)
 DEBUG = False
 
@@ -736,9 +736,10 @@ def train():
         if i%args.i_testset==0 and i > 0:
             testsavedir = os.path.join(basedir, expname, 'testset_{:06d}'.format(i))
             os.makedirs(testsavedir, exist_ok=True)
-            print('test poses shape', poses[i_test].shape)
+            # print('test poses shape', poses[i_test].shape)
+            print('test poses shape', poses[i_test[0]].shape)
             with torch.no_grad():
-                render_path(torch.Tensor(poses[i_test]).to(device), hwf, K, args.chunk, render_kwargs_test,
+                render_path(torch.Tensor(poses[i_test[0]]).to(device), hwf, K, args.chunk, render_kwargs_test,
                                 # gt_imgs=images[i_test], 
                                 savedir=testsavedir)
             print('Saved test set')

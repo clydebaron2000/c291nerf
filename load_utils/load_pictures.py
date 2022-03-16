@@ -8,7 +8,7 @@ def txt_to_array(path):
     with open(path) as file:
         return [[float(word.strip()) for word in line.split(' ')] for line in file]
 
-def load_pictures(basedir='./data/', downsample=8, render_poses = None):
+def load_pictures(basedir='./data/', downsample=1, render_poses = None):
     # render_poses = ['2_test_0000','2_test_0016','2_test_0055','2_test_0093','2_test_0160']
     # loading images
     imgs_dir = os.path.join(basedir, 'rgb')
