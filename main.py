@@ -426,13 +426,15 @@ def train():
     args = parser.parse_args()
 
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
+    i_train, i_val, i_test = i_split
+    H, W, _ = hwf 
 
     # Create log dir and copy the config file
     basedir = args.basedir
     expname = args.expname
     os.makedirs(os.path.join(basedir, expname), exist_ok=True)
-    # added
     os.makedirs(os.path.join(basedir, 'imgs'), exist_ok=True)
+    # added
     f = os.path.join(basedir, expname, 'args.txt')
     with open(f, 'w') as file:
         for arg in sorted(vars(args)):
