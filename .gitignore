@@ -6,6 +6,8 @@
 *.npz
 *.dae
 data/*
-!data/zips/*
 logs/*
+!logs/*/*.tar
+!logs/*/*.mp4
+!logs/*/*.txt
 .env
