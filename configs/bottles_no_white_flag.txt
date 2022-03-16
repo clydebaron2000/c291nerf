@@ -21,9 +21,9 @@ i_testset = 100
 
 render_test = True
 render_factor = 1
-N_rand = 256
+N_rand = 1024
 
-netwidth = 128
+netwidth = 258
 netdepth = 8
 
 chunk = 8192

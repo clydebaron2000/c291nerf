@@ -573,6 +573,7 @@ def train(args):
         img_loss = img2mse(rgb, target_s)
         # trans = extras['raw'][...,-1]
         loss = img_loss
+        # TODO calc validation psnr not training psnr
         psnr = mse2psnr(img_loss)
         
         # if args.render_predictions and i % args.i_img==0:
