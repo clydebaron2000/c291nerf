@@ -420,18 +420,13 @@ def render_rays(ray_batch,
     return ret
 
 
-def train():
-
-    parser = config_parser()
-    args = parser.parse_args
-
-    device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
-    print(f'using device {device}')
+def train(args):
 
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
     i_train, i_val, i_test = i_split
     H, W, _ = hwf 
-
+    
+    
     # Create log dir and copy the config file
     basedir = args.basedir
     expname = args.expname
@@ -545,6 +540,7 @@ def train():
             pose = poses[img_i, :3,:4]
 
             if N_rand is not None:
+                print(pose.get_device())
                 rays_o, rays_d = get_rays(H, W, K, torch.Tensor(pose))  # (H, W, 3), (H, W, 3)
 
                 if i < args.precrop_iters:
@@ -700,6 +696,11 @@ def train():
 
 
 if __name__=='__main__':
+    parser = config_parser()
+    args = parser.parse_args()
+
+    device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
     torch.set_default_tensor_type('torch.cuda.FloatTensor')
-    train()
+    print(f'using device {device}')
+    train(args)
     
