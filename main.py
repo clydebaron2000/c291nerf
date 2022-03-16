@@ -737,9 +737,9 @@ def train():
             testsavedir = os.path.join(basedir, expname, 'testset_{:06d}'.format(i))
             os.makedirs(testsavedir, exist_ok=True)
             # print('test poses shape', poses[i_test].shape)
-            print('test poses shape', poses[i_test[0]].shape)
+            print('test poses shape', poses[30].shape)
             with torch.no_grad():
-                render_path(torch.Tensor(poses[i_test[0]]).to(device), hwf, K, args.chunk, render_kwargs_test,
+                render_path(torch.Tensor(poses[30]).to(device), hwf, K, args.chunk, render_kwargs_test,
                                 # gt_imgs=images[i_test], 
                                 savedir=testsavedir)
             print('Saved test set')
