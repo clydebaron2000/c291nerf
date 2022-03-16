@@ -11,6 +11,14 @@ then simply run `python main.py --config ./configs/<EXPERIMENT NAME>` or modify 
 
 Additionally, if you want to instantly run the code with default configs in `configs`, copy-paste the contents of `clone_and_run.sh` into your terminal.
 
+# results 
+
+bottles.txt:
+![bottles](./logs/bottles_test/bottles_test_spiral_100000_rgb.mp4)
+
+lego.txt:
+![lego](./logs/lego_test/lego_test_spiral_100000_rgb.mp4)
+
 # contributors 
 - created by [clydebaron2000](https://github.com/clydebaron2000)
 - consulted with [jonzamora](https://github.com/jonzamora)
