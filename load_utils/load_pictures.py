@@ -75,6 +75,11 @@ def load_pictures(args):
     int_path = os.path.join(basedir, 'intrinsics.txt')
     K = np.asarray(txt_to_array(int_path))
     focal = K[0,0]
+
+    if args.half_res:
+        H = H//2
+        W = W//2
+        focal = focal/2.
     
     # todo: near and far params
     # x_min y_min z_min x_max y_max z_max some_not_related_value

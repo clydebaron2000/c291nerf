@@ -4,6 +4,8 @@ datadir = ./data/bottles
 dataset_type = pictures
 
 gpu = 0
+# how to render only desired test inds
+render_poses_filter = [0,12,55,93,160]
 
 no_batching = True
 

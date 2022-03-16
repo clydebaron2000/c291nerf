@@ -74,8 +74,8 @@ def config_parser():
                         help='render the network predictions as specified by --i_img')
     parser.add_argument("--render_factor", type=int, default=1,
                         help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
-    parser.add_argument("--render_poses", type=list, default=None,
-                        help='downsampling factor to speed up rendering, set 4 or 8 for fast preview')
+    parser.add_argument("--render_poses_filter", nargs='+', type=int,default=None,
+                        help='list numbs to render and save, e.g. [0,1,2,3]')
 
     # dataset options
     parser.add_argument("--dataset_type", type=str, default='llff',
@@ -119,3 +119,8 @@ def config_parser():
     parser.add_argument("--i_video",   type=int, default=50000,
                         help='frequency of render_poses video saving')
     return parser
+
+if __name__ == '__main__':
+    parser = config_parser()
+    args = parser.parse_args()
+    print(args)
