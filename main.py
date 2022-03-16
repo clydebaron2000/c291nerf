@@ -699,7 +699,8 @@ if __name__=='__main__':
     args = parser.parse_args()
 
     device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
-    torch.set_default_tensor_type('torch.cuda.FloatTensor')
     print(f'using device {device}')
-    train(args)
+    with torch.cuda.device(args.gpu):
+        torch.set_default_tensor_type('torch.cuda.FloatTensor')
+        train(args)
     
