@@ -418,13 +418,7 @@ def render_rays(ray_batch,
     return ret
 
 
-def train():
-
-    parser = config_parser()
-    args = parser.parse_args()
-
-    device = torch.device((f'cuda:{args.gpu}' if torch.cuda.is_available() else 'cpu'))
-    print(f'using device {device}')
+def train(args):
 
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
     i_train, i_val, i_test = i_split
@@ -575,6 +569,7 @@ def train():
         img_loss = img2mse(rgb, target_s)
         # trans = extras['raw'][...,-1]
         loss = img_loss
+        # TODO calc validation psnr not training psnr
         psnr = mse2psnr(img_loss)
         
         # if args.render_predictions and i % args.i_img==0:
