@@ -16,3 +16,8 @@ use_viewdirs = True
 white_bkgd = True
 
 N_rand = 1024
+
+i_testset = 100
+
+render_test = True
+render_factor = 1
