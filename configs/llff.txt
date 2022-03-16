@@ -2,6 +2,8 @@
 # when trained to 200k iters. Settings are the 
 # same for all other LLFF-style real scenes.
 
+gpu = 1
+
 expname = llff_paper_fern
 basedir = ./logs
 datadir = ./data/nerf_llff_data/fern

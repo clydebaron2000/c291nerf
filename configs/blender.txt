@@ -2,6 +2,8 @@
 # when trained to 500k iters. Settings are the 
 # same for all other synthetic blender scenes.
 
+gpu = 1
+
 expname = blender_paper_lego
 basedir = ./logs
 datadir = ./data/nerf_synthetic/lego

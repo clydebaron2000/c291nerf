@@ -3,6 +3,8 @@ basedir = ./logs
 datadir = ./data/nerf_synthetic/lego
 dataset_type = blender
 
+gpu = 1
+
 half_res = True
 no_batching = True
 
