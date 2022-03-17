@@ -661,7 +661,7 @@ def train(args):
             # validation evaluation
             outstring =f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}" 
             if i%args.i_val_eval==0:
-                inds = np.random.choice(i_val, size=args.i_val_set, replace=False)
+                inds = i_val[:args.i_val_set]
                 val_set = images[inds]
                 if isinstance(val_set,torch.Tensor):
                     val_set = val_set.cpu()
