@@ -3,7 +3,7 @@
 ########################################################################################################################
 import os
 
-import imageio
+from imageio import imread
 import numpy as np
 
 
@@ -89,16 +89,16 @@ def load_dv_data(args):
     valposes = valposes[::testskip]
 
     imgfiles = [f for f in sorted(os.listdir(os.path.join(deepvoxels_base, 'rgb'))) if f.endswith('png')]
-    imgs = np.stack([imageio.imread(os.path.join(deepvoxels_base, 'rgb', f))/255. for f in imgfiles], 0).astype(np.float32)
+    imgs = np.stack([imread(os.path.join(deepvoxels_base, 'rgb', f))/255. for f in imgfiles], 0).astype(np.float32)
     
     
     testimgd = '{}/test/{}/rgb'.format(basedir, scene)
     imgfiles = [f for f in sorted(os.listdir(testimgd)) if f.endswith('png')]
-    testimgs = np.stack([imageio.imread(os.path.join(testimgd, f))/255. for f in imgfiles[::testskip]], 0).astype(np.float32)
+    testimgs = np.stack([imread(os.path.join(testimgd, f))/255. for f in imgfiles[::testskip]], 0).astype(np.float32)
     
     valimgd = '{}/validation/{}/rgb'.format(basedir, scene)
     imgfiles = [f for f in sorted(os.listdir(valimgd)) if f.endswith('png')]
-    valimgs = np.stack([imageio.imread(os.path.join(valimgd, f))/255. for f in imgfiles[::testskip]], 0).astype(np.float32)
+    valimgs = np.stack([imread(os.path.join(valimgd, f))/255. for f in imgfiles[::testskip]], 0).astype(np.float32)
     
     all_imgs = [imgs, valimgs, testimgs]
     counts = [0] + [x.shape[0] for x in all_imgs]

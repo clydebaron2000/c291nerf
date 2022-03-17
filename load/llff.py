@@ -3,6 +3,7 @@
 ########################################################################################################################
 
 import os
+from os.path import exists, join
 
 import numpy as np
 from imageio import imread
@@ -13,12 +14,12 @@ from imageio import imread
 def _minify(basedir, factors=[], resolutions=[]):
     need_to_load = False
     for r in factors:
-        img_dir = os.path.join(basedir, 'images_{}'.format(r))
-        if not os.path.exists(img_dir):
+        img_dir = join(basedir, 'images_{}'.format(r))
+        if not exists(img_dir):
             need_to_load = True
     for r in resolutions:
-        img_dir = os.path.join(basedir, 'images_{}x{}'.format(r[1], r[0]))
-        if not os.path.exists(img_dir):
+        img_dir = join(basedir, 'images_{}x{}'.format(r[1], r[0]))
+        if not exists(img_dir):
             need_to_load = True
     if not need_to_load:
         return
@@ -26,8 +27,8 @@ def _minify(basedir, factors=[], resolutions=[]):
     from shutil import copy
     from subprocess import check_output
     
-    img_dir = os.path.join(basedir, 'images')
-    imgs = [os.path.join(img_dir, f) for f in sorted(os.listdir(img_dir))]
+    img_dir = join(basedir, 'images')
+    imgs = [join(img_dir, f) for f in sorted(os.listdir(img_dir))]
     imgs = [f for f in imgs if any([f.endswith(ex) for ex in ['JPG', 'jpg', 'png', 'jpeg', 'PNG']])]
     img_dir_orig = img_dir
     
@@ -40,8 +41,8 @@ def _minify(basedir, factors=[], resolutions=[]):
         else:
             name = 'images_{}x{}'.format(r[1], r[0])
             resize_arg = '{}x{}'.format(r[1], r[0])
-        img_dir = os.path.join(basedir, name)
-        if os.path.exists(img_dir):
+        img_dir = join(basedir, name)
+        if exists(img_dir):
             continue
             
         # print('Minifying', r, basedir)
@@ -64,11 +65,11 @@ def _minify(basedir, factors=[], resolutions=[]):
     
 def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
     
-    poses_arr = np.load(os.path.join(basedir, 'poses_bounds.npy'))
+    poses_arr = np.load(join(basedir, 'poses_bounds.npy'))
     poses = poses_arr[:, :-2].reshape([-1, 3, 5]).transpose([1,2,0])
     bds = poses_arr[:, -2:].transpose([1,0])
     
-    img0 = [os.path.join(basedir, 'images', f) for f in sorted(os.listdir(os.path.join(basedir, 'images'))) \
+    img0 = [join(basedir, 'images', f) for f in sorted(os.listdir(join(basedir, 'images'))) \
             if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')][0]
     sh = imread(img0).shape
     
@@ -91,12 +92,12 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
     else:
         factor = 1
     
-    img_dir = os.path.join(basedir, 'images' + sfx)
-    if not os.path.exists(img_dir):
+    img_dir = join(basedir, 'images' + sfx)
+    if not exists(img_dir):
         print( img_dir, 'does not exist, returning' )
         return
     
-    img_files = [os.path.join(img_dir, f) for f in sorted(os.listdir(img_dir)) if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')]
+    img_files = [join(img_dir, f) for f in sorted(os.listdir(img_dir)) if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')]
     if poses.shape[-1] != len(img_files):
         print( 'Mismatch between imgs {} and poses {} !!!!'.format(len(img_files), poses.shape[-1]) )
         return
