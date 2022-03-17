@@ -287,7 +287,7 @@ def prepare_model():
                                                                 netchunk=1024*64)
 
     kwargs_torch = {'verbose': True, 
-                    're_traw': True, 
+                    'ret_raw': True, 
                     'network_query_fn': network_query_fn_torch, 
                     'perturb': 1, 
                     'N_importance': 5, 
