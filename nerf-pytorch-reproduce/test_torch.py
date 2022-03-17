@@ -6,7 +6,7 @@ tf.compat.v1.enable_eager_execution()
 
 
 def test_positional_encoding():
-    from run_nerf_helpers_torch import get_embedder as get_embedder_torch
+    from utils.nerf_helpers import get_embedder as get_embedder_torch
     from run_nerf_helpers import get_embedder as get_embedder_tf
     
     multires = 10
@@ -28,7 +28,7 @@ def test_positional_encoding():
 
 
 def test_get_rays():
-    from run_nerf_helpers_torch import get_rays, get_rays_np
+    from utils.nerf_helpers import get_rays, get_rays_np
     H, W, focal = int(378/18), int(504/18), 407.5658/18
     hwf = [H, W, focal]
     pose = np.array([
@@ -45,7 +45,7 @@ def test_get_rays():
 
 
 def test_sample_pdf():
-    from run_nerf_helpers_torch import sample_pdf as sample_pdf_torch
+    from utils.nerf_helpers import sample_pdf as sample_pdf_torch
     from run_nerf_helpers import sample_pdf as sample_pdf_tf
     
     N_samples = 5
@@ -121,9 +121,9 @@ def test_model_forward_backward():
     ###################################
 
     # torch
-    from run_nerf_helpers_torch import NeRF
-    from run_nerf_helpers_torch import get_embedder as get_embedder_torch
-    from run_nerf_torch import run_network as run_network_torch
+    from utils.nerf_helpers import NeRF
+    from utils.nerf_helpers import get_embedder as get_embedder_torch
+    from main import run_network as run_network_torch
 
     # Init
     embed_fn, input_ch = get_embedder_torch(multires, i_embed)
@@ -287,8 +287,8 @@ def prepare_model():
     ###################################
 
     # torch
-    from run_nerf_helpers_torch import NeRF
-    from run_nerf_helpers_torch import get_embedder as get_embedder_torch
+    from utils.nerf_helpers import NeRF
+    from utils.nerf_helpers import get_embedder as get_embedder_torch
     from run_nerf_torch import run_network as run_network_torch
     
     # Init
