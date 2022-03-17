@@ -6,7 +6,7 @@ dataset_type = pictures
 gpu = 2
 
 half_res = False
-no_batching = False
+no_batching = True
 
 random_seed = 1234
 

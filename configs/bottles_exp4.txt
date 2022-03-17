@@ -7,7 +7,7 @@ gpu = 1
 # how to render only desired test inds
 render_poses_filter = [0,12,55,93,160]
 
-no_batching = False
+no_batching = True
 
 random_seed = 1234
 

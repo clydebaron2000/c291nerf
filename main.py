@@ -659,6 +659,7 @@ def train(args):
         if i%args.i_print==0:
             # validation evaluation
             val_set = images[i_val]
+            val_set = torch.randperm(len(val_set))[:args.i_val_set]
             vals = np.stack(val_set.cpu(),0)
             with torch.no_grad():
                 rgbs, disps = render_path(poses[i_val], hwf, K, args.chunk, render_kwargs_test)

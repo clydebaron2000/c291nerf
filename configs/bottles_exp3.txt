@@ -7,7 +7,7 @@ gpu = 3
 # how to render only desired test inds
 render_poses_filter = [0,12,55,93,160]
 
-no_batching = False
+no_batching = True
 
 random_seed = 1234
 
@@ -16,7 +16,7 @@ N_importance = 64
 
 use_viewdirs = True
 
-i_testset = 100
+i_testset = 1000
 
 render_test = True
 render_factor = 1

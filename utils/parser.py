@@ -114,6 +114,8 @@ def config_parser():
                         help='number of iterations to train for')
     parser.add_argument("--i_print",   type=int, default=100,
                         help='frequency of console printout and metric loggin')
+    parser.add_argument("--i_val_set", type=int, default=10,
+                        help="number of validation set for print evaluation")
     parser.add_argument("--i_img",     type=int, default=500,
                         help='frequency of tensorboard image logging')
     parser.add_argument("--i_weights", type=int, default=10000,
