@@ -18,5 +18,7 @@ opencv-python
 torchsummary
 # extra?
 pytorch3d
+tensorflow
+pytest
 
 

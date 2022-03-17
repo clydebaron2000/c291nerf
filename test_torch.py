@@ -7,7 +7,7 @@ tf.compat.v1.enable_eager_execution()
 
 def test_positional_encoding():
     from utils.nerf_helpers import get_embedder as get_embedder_torch
-    from run_nerf_helpers import get_embedder as get_embedder_tf
+    from reference.run_nerf_helpers import get_embedder as get_embedder_tf
     
     multires = 10
     i_embed = 0
@@ -46,7 +46,7 @@ def test_get_rays():
 
 def test_sample_pdf():
     from utils.nerf_helpers import sample_pdf as sample_pdf_torch
-    from run_nerf_helpers import sample_pdf as sample_pdf_tf
+    from reference.run_nerf_helpers import sample_pdf as sample_pdf_tf
     
     N_samples = 5
     bins = np.array([
@@ -93,8 +93,8 @@ def test_model_forward_backward():
     ###################################
 
     # tf
-    from run_nerf_helpers import init_nerf_model, get_embedder
-    from run_nerf import run_network
+    from reference.run_nerf_helpers import init_nerf_model, get_embedder
+    from main import run_network
 
     # Init
     embed_fn, input_ch = get_embedder(multires, i_embed)
@@ -153,31 +153,6 @@ def test_model_forward_backward():
     assert np.allclose(np.transpose(grads_tf[0].numpy()), model_torch.pts_linears[0].weight.grad.numpy(), atol=1e-6)  
     
 
-def test_load_blender_data():
-    from load_blender_torch import load_blender_data as load_blender_data_torch
-    from load_blender import load_blender_data as load_blender_data_tf
-
-    datadir = './test_data/nerf_synthetic/lego'
-    half_res = True
-    testskip = 1
-    white_bkgd = True
-
-    images_torch, poses_torch, render_poses_torch, hwf_torch, i_split_torch = load_blender_data_torch(datadir, half_res, testskip)
-    if white_bkgd:
-        images_torch = images_torch[...,:3]*images_torch[...,-1:] + (1.-images_torch[...,-1:])
-    else:
-        images_torch = images_torch[...,:3]
-
-    images_tf, poses_tf, render_poses_tf, hwf_tf, i_split_tf = load_blender_data_tf(datadir, half_res, testskip)
-    if white_bkgd:
-        images_tf = images_tf[...,:3]*images_tf[...,-1:] + (1.-images_tf[...,-1:])
-    else:
-        images_tf = images_tf[...,:3]
-
-    assert np.allclose(images_torch, images_tf)
-    assert np.allclose(poses_torch, poses_tf)
-    assert np.allclose(render_poses_torch.numpy(), render_poses_tf.numpy())
-
 
 def test_raw2outputs():
     raw_noise_std = 1
@@ -195,7 +170,7 @@ def test_raw2outputs():
     z_vals_torch = torch.Tensor(z_vals)
     rays_d_torch = torch.Tensor(rays_d)
 
-    from run_nerf_torch import raw2outputs as raw2outputs_torch
+    from main import raw2outputs as raw2outputs_torch
     # Function copied from run_nerf.py
     def raw2outputs_tf(raw, z_vals, rays_d, pytest=False):
         raw2alpha = lambda raw, dists, act_fn=tf.nn.relu: 1.-tf.exp(-act_fn(raw)*dists)
@@ -252,9 +227,9 @@ def prepare_model():
     ###################################
 
     # tf
-    from run_nerf_helpers import init_nerf_model
-    from run_nerf_helpers import get_embedder as get_embedder_tf
-    from run_nerf import run_network as run_network_tf
+    from reference.run_nerf_helpers import init_nerf_model
+    from reference.run_nerf_helpers import get_embedder as get_embedder_tf
+    from reference.run_nerf import run_network as run_network_tf
 
     # Init
     embed_fn_tf, input_ch = get_embedder_tf(multires, i_embed)
@@ -289,7 +264,7 @@ def prepare_model():
     # torch
     from utils.nerf_helpers import NeRF
     from utils.nerf_helpers import get_embedder as get_embedder_torch
-    from run_nerf_torch import run_network as run_network_torch
+    from main import run_network as run_network_torch
     
     # Init
     embed_fn_torch, input_ch = get_embedder_torch(multires, i_embed)
@@ -327,8 +302,8 @@ def prepare_model():
 
 
 def test_render_rays():
-    from run_nerf import render_rays as render_rays_tf
-    from run_nerf_torch import render_rays as render_rays_torch
+    from reference.run_nerf import render_rays as render_rays_tf
+    from main import render_rays as render_rays_torch
 
     # Prepare data
     ray_batch = np.random.rand(10, 11)  # (batch, dim)
@@ -352,8 +327,8 @@ def test_render_rays():
 
 
 def test_render():    
-    from run_nerf import render as render_tf
-    from run_nerf_torch import render as render_torch
+    from reference.run_nerf import render as render_tf
+    from main import render as render_torch
     
     # Prepare data
     H, W, focal = int(378/18), int(504/18), 407.5658/18
