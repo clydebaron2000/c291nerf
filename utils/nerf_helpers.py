@@ -1,21 +1,24 @@
+########################################################################################################################
+# From nerf-pytorch repo
+########################################################################################################################
+
+import numpy as np
 import torch
 # torch.autograd.set_detect_anomaly(True)
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
-
 
 # Misc
 img2mse = lambda x, y : torch.mean((x - y) ** 2)
 mse2psnr = lambda x : -10. * torch.log(x) / torch.log(torch.Tensor([10.]))
 to8b = lambda x : (255*np.clip(x,0,1)).astype(np.uint8)
 
-
 # Positional encoding (section 5.1)
 class Embedder:
     def __init__(self, **kwargs):
         self.kwargs = kwargs
         self.create_embedding_fn()
+
         
     def create_embedding_fn(self):
         embed_fns = []
@@ -40,6 +43,7 @@ class Embedder:
                     
         self.embed_fns = embed_fns
         self.out_dim = out_dim
+
         
     def embed(self, inputs):
         return torch.cat([fn(inputs) for fn in self.embed_fns], -1)
@@ -66,8 +70,6 @@ def get_embedder(multires, i=0):
 # Model
 class NeRF(nn.Module):
     def __init__(self, D=8, W=256, input_ch=3, input_ch_views=3, output_ch=4, skips=[4], use_viewdirs=False):
-        """ 
-        """
         super(NeRF, self).__init__()
         self.D = D
         self.W = W
@@ -93,10 +95,11 @@ class NeRF(nn.Module):
         else:
             self.output_linear = nn.Linear(W, output_ch)
 
+
     def forward(self, x):
         input_pts, input_views = torch.split(x, [self.input_ch, self.input_ch_views], dim=-1)
         h = input_pts
-        for i, l in enumerate(self.pts_linears):
+        for i, _ in enumerate(self.pts_linears):
             h = self.pts_linears[i](h)
             h = F.relu(h)
             if i in self.skips:
@@ -107,7 +110,7 @@ class NeRF(nn.Module):
             feature = self.feature_linear(h)
             h = torch.cat([feature, input_views], -1)
         
-            for i, l in enumerate(self.views_linears):
+            for i, _ in enumerate(self.views_linears):
                 h = self.views_linears[i](h)
                 h = F.relu(h)
 
@@ -117,6 +120,7 @@ class NeRF(nn.Module):
             outputs = self.output_linear(h)
 
         return outputs    
+
 
     def load_weights_from_keras(self, weights):
         assert self.use_viewdirs, "Not implemented if use_viewdirs=False"
@@ -146,7 +150,6 @@ class NeRF(nn.Module):
         idx_alpha_linear = 2 * self.D + 6
         self.alpha_linear.weight.data = torch.from_numpy(np.transpose(weights[idx_alpha_linear]))
         self.alpha_linear.bias.data = torch.from_numpy(np.transpose(weights[idx_alpha_linear+1]))
-
 
 
 # Ray helpers

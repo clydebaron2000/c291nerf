@@ -16,10 +16,6 @@ tensorboard>=2.0
 opencv-python
 # optional for model evaluation
 torchsummary
-# deps for scikit-learn
-ffmpeg 
-scikit-learn
-scikit-image
 # extra?
 pytorch3d
 
