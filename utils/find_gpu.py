@@ -1,9 +1,12 @@
 ########################################################################################################################
 #  modified gist from https://gist.github.com/afspies/7e211b83ca5a8902849b05ded9a10696
 ########################################################################################################################
+# TODO: un-used, possibly delete?
 
 import os
-import subprocess
+from subprocess import check_output
+
+
 # This function should be called after all imports,
 # in case you are setting CUDA_AVAILABLE_DEVICES elsewhere
 def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=2):
@@ -15,7 +18,7 @@ def assign_free_gpus(threshold_vram_usage=1_000_000, max_gpus=2):
                                 Defaults to 2.
     """
     # Get the list of GPUs via nvidia-smi
-    smi_query_result = subprocess.check_output('nvidia-smi -q -d Memory | grep -A4 GPU', shell=True)
+    smi_query_result = check_output('nvidia-smi -q -d Memory | grep -A4 GPU', shell=True)
     # Extract the usage information
     gpu_info = smi_query_result.decode('utf-8').split('\n')
     gpu_info = list(filter(lambda info: 'Used' in info, gpu_info))

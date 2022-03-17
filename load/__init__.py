@@ -1,11 +1,13 @@
-from load_utils.load_llff import load_llff_data
-from load_utils.load_deepvoxels import load_dv_data
-from load_utils.load_blender import load_blender_data
-from load_utils.load_LINEMOD import load_LINEMOD_data
-from load_utils.load_pictures import load_pictures
 import numpy as np
 
-def load_data(args):
+from .blender import load_blender_data
+from .deepvoxels import load_dv_data
+from .LINEMOD import load_LINEMOD_data
+from .llff import load_llff_data
+from .pictures import load_pictures
+
+
+def load_data_from_args(args):
     data_type = args.dataset_type
     output = None
     if data_type == 'llff':

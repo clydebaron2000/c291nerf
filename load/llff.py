@@ -2,76 +2,76 @@
 # inspired by nerf-pytorch repo
 ########################################################################################################################
 
-import numpy as np
-import os, imageio
+import os
+from os.path import exists, join
 
+import numpy as np
+from imageio import imread
 
 ########## Slightly modified version of LLFF data loading code 
 ##########  see https://github.com/Fyusion/LLFF for original
 
 def _minify(basedir, factors=[], resolutions=[]):
-    needtoload = False
+    need_to_load = False
     for r in factors:
-        imgdir = os.path.join(basedir, 'images_{}'.format(r))
-        if not os.path.exists(imgdir):
-            needtoload = True
+        img_dir = join(basedir, 'images_{}'.format(r))
+        if not exists(img_dir):
+            need_to_load = True
     for r in resolutions:
-        imgdir = os.path.join(basedir, 'images_{}x{}'.format(r[1], r[0]))
-        if not os.path.exists(imgdir):
-            needtoload = True
-    if not needtoload:
+        img_dir = join(basedir, 'images_{}x{}'.format(r[1], r[0]))
+        if not exists(img_dir):
+            need_to_load = True
+    if not need_to_load:
         return
     
     from shutil import copy
     from subprocess import check_output
     
-    imgdir = os.path.join(basedir, 'images')
-    imgs = [os.path.join(imgdir, f) for f in sorted(os.listdir(imgdir))]
+    img_dir = join(basedir, 'images')
+    imgs = [join(img_dir, f) for f in sorted(os.listdir(img_dir))]
     imgs = [f for f in imgs if any([f.endswith(ex) for ex in ['JPG', 'jpg', 'png', 'jpeg', 'PNG']])]
-    imgdir_orig = imgdir
+    img_dir_orig = img_dir
     
     wd = os.getcwd()
 
     for r in factors + resolutions:
         if isinstance(r, int):
             name = 'images_{}'.format(r)
-            resizearg = '{}%'.format(100./r)
+            resize_arg = '{}%'.format(100./r)
         else:
             name = 'images_{}x{}'.format(r[1], r[0])
-            resizearg = '{}x{}'.format(r[1], r[0])
-        imgdir = os.path.join(basedir, name)
-        if os.path.exists(imgdir):
+            resize_arg = '{}x{}'.format(r[1], r[0])
+        img_dir = join(basedir, name)
+        if exists(img_dir):
             continue
             
         # print('Minifying', r, basedir)
         
-        os.makedirs(imgdir)
-        check_output('cp {}/* {}'.format(imgdir_orig, imgdir), shell=True)
+        os.makedirs(img_dir)
+        check_output('cp {}/* {}'.format(img_dir_orig, img_dir), shell=True)
         
         ext = imgs[0].split('.')[-1]
-        args = ' '.join(['mogrify', '-resize', resizearg, '-format', 'png', '*.{}'.format(ext)])
-        # print(args)
-        os.chdir(imgdir)
+        args = ' '.join(['mogrify', '-resize', resize_arg, '-format', 'png', '*.{}'.format(ext)])
+        
+        os.chdir(img_dir)
         check_output(args, shell=True)
         os.chdir(wd)
         
         if ext != 'png':
-            check_output('rm {}/*.{}'.format(imgdir, ext), shell=True)
+            check_output('rm {}/*.{}'.format(img_dir, ext), shell=True)
             print('Removed duplicates')
         print('Done')
             
-        
-        
-        
+    
 def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
     
-    poses_arr = np.load(os.path.join(basedir, 'poses_bounds.npy'))
+    poses_arr = np.load(join(basedir, 'poses_bounds.npy'))
     poses = poses_arr[:, :-2].reshape([-1, 3, 5]).transpose([1,2,0])
     bds = poses_arr[:, -2:].transpose([1,0])
     
-    img0 = [os.path.join(basedir, 'images', f) for f in sorted(os.listdir(os.path.join(basedir, 'images'))) \
+    img0 = [join(basedir, 'images', f) for f in sorted(os.listdir(join(basedir, 'images'))) \
             if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')][0]
-    sh = imageio.imread(img0).shape
+    sh = imread(img0).shape
     
     sfx = ''
     
@@ -92,17 +92,17 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
     else:
         factor = 1
     
-    imgdir = os.path.join(basedir, 'images' + sfx)
-    if not os.path.exists(imgdir):
-        print( imgdir, 'does not exist, returning' )
+    img_dir = join(basedir, 'images' + sfx)
+    if not exists(img_dir):
+        print( img_dir, 'does not exist, returning' )
         return
     
-    imgfiles = [os.path.join(imgdir, f) for f in sorted(os.listdir(imgdir)) if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')]
-    if poses.shape[-1] != len(imgfiles):
-        print( 'Mismatch between imgs {} and poses {} !!!!'.format(len(imgfiles), poses.shape[-1]) )
+    img_files = [join(img_dir, f) for f in sorted(os.listdir(img_dir)) if f.endswith('JPG') or f.endswith('jpg') or f.endswith('png')]
+    if poses.shape[-1] != len(img_files):
+        print( 'Mismatch between imgs {} and poses {} !!!!'.format(len(img_files), poses.shape[-1]) )
         return
     
-    sh = imageio.imread(imgfiles[0]).shape
+    sh = imread(img_files[0]).shape
     poses[:2, 4, :] = np.array(sh[:2]).reshape([2, 1])
     poses[2, 4, :] = poses[2, 4, :] * 1./factor
     
@@ -111,23 +111,20 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True):
     
     def imread(f):
         if f.endswith('png'):
-            return imageio.imread(f, ignoregamma=True)
+            return imread(f, ignoregamma=True)
         else:
-            return imageio.imread(f)
+            return imread(f)
         
-    imgs = imgs = [imread(f)[...,:3]/255. for f in imgfiles]
+    imgs = imgs = [imread(f)[...,:3]/255. for f in img_files]
     imgs = np.stack(imgs, -1)  
     
     print('Loaded image data', imgs.shape, poses[:,-1,0])
     return poses, bds, imgs
 
-    
-            
-            
-    
 
 def normalize(x):
     return x / np.linalg.norm(x)
+
 
 def viewmatrix(z, up, pos):
     vec2 = normalize(z)
@@ -137,21 +134,19 @@ def viewmatrix(z, up, pos):
     m = np.stack([vec0, vec1, vec2, pos], 1)
     return m
 
+
 def ptstocam(pts, c2w):
     tt = np.matmul(c2w[:3,:3].T, (pts-c2w[:3,3])[...,np.newaxis])[...,0]
     return tt
 
+
 def poses_avg(poses):
-
     hwf = poses[0, :3, -1:]
-
     center = poses[:, :3, 3].mean(0)
     vec2 = normalize(poses[:, :3, 2].sum(0))
     up = poses[:, :3, 1].sum(0)
     c2w = np.concatenate([viewmatrix(vec2, up, center), hwf], 1)
-    
     return c2w
-
 
 
 def render_path_spiral(c2w, up, rads, focal, zdelta, zrate, rots, N):
