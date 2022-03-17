@@ -419,6 +419,8 @@ def render_rays(ray_batch,
 
 
 def train(args):
+    # TODO: add depthmapping
+    # https://keras.io/examples/vision/nerf/
 
     images, poses, render_poses, hwf, K, i_split, near, far = load_data(args)
     i_train, i_val, i_test = i_split
@@ -573,7 +575,7 @@ def train(args):
 
         optimizer.zero_grad()
         img_loss = img2mse(rgb, target_s)
-        # trans = extras['raw'][...,-1]
+        trans = extras['raw'][...,-1]
         loss = img_loss
         # TODO calc validation psnr not training psnr
         psnr = mse2psnr(img_loss)
@@ -599,7 +601,9 @@ def train(args):
         # print(f"Step: {global_step}, Loss: {loss}, Time: {dt}")
         #####           end            #####
 
-        # Rest is logging
+        ##### Rest is logging
+
+        # logging weights
         if i%args.i_weights==0:
             path = os.path.join(basedir, expname, '{:06d}.tar'.format(i))
             torch.save({
@@ -610,6 +614,7 @@ def train(args):
             }, path)
             print('Saved checkpoints at', path)
 
+        # TODO: Consolidate code
         if i%args.i_video==0 and i > 0:
             # Turn on testing mode
             with torch.no_grad():
@@ -640,11 +645,17 @@ def train(args):
                                 # gt_imgs=images[i_test], 
                                 savedir=testsavedir)
             print('Saved test set')
-
-
     
         if i%args.i_print==0:
-            tqdm.write(f"[TRAIN] Iter: {i} Loss: {loss.item()}  PSNR: {psnr.item()}")
+            # validation evaluation
+            val_set = images[i_val]
+            vals = np.stack(val_set,0)
+            with torch.no_grad():
+                rgbs, disps = render_path(poses[i_val], hwf, K, args.chunk, render_kwargs_test)
+            val_loss = img2mse(rgbs, vals)
+            val_psnr = mse2psnr(val_loss)
+            tqdm.write(f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}"+
+                        f"Val Loss: {val_loss} Val PSNR: {val_psnr}")
         """
             print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
             print('iter time {:.05f}'.format(dt))
