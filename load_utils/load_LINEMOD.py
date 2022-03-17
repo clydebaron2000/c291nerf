@@ -82,7 +82,7 @@ def load_LINEMOD_data(args):
     H, W = imgs[0].shape[:2]
     focal = float(meta['frames'][0]['intrinsic_matrix'][0][0])
     K = meta['frames'][0]['intrinsic_matrix']
-    print(f"Focal: {focal}")
+    # print(f"Focal: {focal}")
     
     render_poses = torch.stack([pose_spherical(angle, -30.0, 4.0) for angle in np.linspace(-180,180,40+1)[:-1]], 0)
     
