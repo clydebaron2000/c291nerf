@@ -652,6 +652,8 @@ def train(args):
             vals = np.stack(val_set,0)
             with torch.no_grad():
                 rgbs, disps = render_path(poses[i_val], hwf, K, args.chunk, render_kwargs_test)
+            rgbs = torch.Tensor(rgbs).to(device)
+            vals = torch.Tensor(vals).to(device)
             val_loss = img2mse(rgbs, vals)
             val_psnr = mse2psnr(val_loss)
             tqdm.write(f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}"+

@@ -1,4 +1,4 @@
-expname = bottles_test_3
+expname = bottles_test_5
 basedir = ./logs
 datadir = ./data/bottles
 dataset_type = pictures
@@ -24,8 +24,8 @@ N_rand = 1024
 
 lrate_decay = 500
 
-multires = 15
-multires_views = 8
+multires = 10
+multires_views = 6
 
 i_weights = 10000
 n_iters = 100000
