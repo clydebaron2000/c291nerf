@@ -16,17 +16,13 @@ N_importance = 128
 
 use_viewdirs = True
 
-i_testset = 100
+i_testset = 1000
 
 render_test = True
 render_factor = 1
 N_rand = 1024
 
-netwidth = 256
-netdepth = 8
-
-chunk = 8192
-netchunk = 16384
+lrate_decay = 500
 
 i_weights = 10000
 n_iters = 100000
