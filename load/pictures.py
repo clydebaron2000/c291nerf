@@ -47,7 +47,7 @@ def load_pictures(args):
         if fname is not None: 
             img = imread(fname)/255
             img = resize(img, (img.shape[0]//downsample,img.shape[1]//downsample))
-        else: raise ValueError('No image found for pose {}'.format(fname))
+        # else: raise ValueError('No image found for pose {}'.format(fname))
         imgs.append(img)
         
     imgs = np.asarray(imgs).astype(np.float32)

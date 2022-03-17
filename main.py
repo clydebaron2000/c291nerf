@@ -9,7 +9,7 @@ import imageio
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from torch.nn.functional import relu_func
+from torch.nn.functional import relu as relu_func
 from tqdm import tqdm, trange
 
 from load import load_data_from_args
@@ -149,7 +149,7 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedi
     disps = []
 
     t = time.time()
-    for i, c2w in enumerate(tqdm(render_poses),desc='Rendering poses: '):
+    for i, c2w in enumerate(tqdm(render_poses,desc='Rendering poses: ')):
         if DEBUG:
             print(i, time.time() - t)
         t = time.time()
@@ -336,7 +336,7 @@ def render_rays(ray_batch,
             in space.
         network_query_fn: function used for passing queries to network_fn.
         N_samples: int. Number of different times to sample along each ray.
-        retraw: bool. If True, include model's raw, unprocessed predictions.
+        ret_raw: bool. If True, include model's raw, unprocessed predictions.
         lindisp: bool. If True, sample linearly in inverse depth rather than in depth.
         perturb: float, 0 or 1. If non-zero, each ray is sampled at stratified
             random points in time.
@@ -579,7 +579,7 @@ def train(args):
 
         #####  Core optimization loop  #####
         rgb, disp, acc_map, extras = render(H, W, K, chunk=args.chunk, rays=batch_rays,
-                                                verbose=i < 10, retraw=True,
+                                                verbose=i < 10, ret_raw=True,
                                                 **render_kwargs_train)
 
         nerf_optimizer.zero_grad()
@@ -658,7 +658,7 @@ def train(args):
         if i%args.i_print==0:
             # validation evaluation
             val_set = images[i_val]
-            vals = np.stack(val_set,0)
+            vals = np.stack(val_set.cpu(),0)
             with torch.no_grad():
                 rgbs, disps = render_path(poses[i_val], hwf, K, args.chunk, render_kwargs_test)
             rgbs = torch.Tensor(rgbs).to(device)

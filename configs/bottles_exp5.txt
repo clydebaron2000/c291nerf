@@ -3,11 +3,11 @@ basedir = ./logs
 datadir = ./data/bottles
 dataset_type = pictures
 
-gpu = 1
+gpu = 3
 # how to render only desired test inds
 render_poses_filter = [0,12,55,93,160]
 
-no_batching = True
+no_batching = False
 
 random_seed = 1234
 
@@ -25,7 +25,7 @@ N_rand = 1024
 lrate_decay = 500
 
 multires = 10
-multires_views = 6
+multires_views = 4
 
 i_weights = 10000
 n_iters = 100000
