@@ -159,13 +159,10 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedi
         if DEBUG and i==0:
             print(rgb.shape, disp.shape)
 
-
-
         if savedir is not None:
             rgb8 = to8b(rgbs[-1])
             filename = path_join(savedir, img_prefix+'{:03d}.png'.format(i))
             imageio.imwrite(filename, rgb8)
-
 
     rgbs = np.stack(rgbs, 0)
     disps = np.stack(disps, 0)
@@ -568,7 +565,11 @@ def train(args):
                     if i == start:
                         print(f"[Config] Center cropping of size {2*dH} x {2*dW} is enabled until iter {args.precrop_iters}")                
                 else:
-                    coords = torch.stack(torch.meshgrid(torch.linspace(0, H-1, H), torch.linspace(0, W-1, W)), -1)  # (H, W, 2)
+                    coords = torch.stack(torch.meshgrid(
+                                            torch.linspace(0, H-1, H), 
+                                            torch.linspace(0, W-1, W),
+                                            indexing='ij')
+                                        , -1)  # (H, W, 2)
 
                 coords = torch.reshape(coords, [-1,2])  # (H * W, 2)
                 select_inds = np.random.choice(coords.shape[0], size=[N_rand], replace=False)  # (N_rand,)
@@ -658,19 +659,22 @@ def train(args):
     
         if i%args.i_print==0:
             # validation evaluation
-            inds = np.random.choice(i_val, size=args.i_val_set, replace=False)
-            val_set = images[inds]
-            if isinstance(val_set,torch.Tensor):
-                val_set = val_set.cpu()
-            vals = np.stack(val_set,0)
-            with torch.no_grad():
-                rgbs, disps = render_path(poses[inds], hwf, K, args.chunk, render_kwargs_test)
-            rgbs = torch.Tensor(rgbs).to(device)
-            vals = torch.Tensor(vals).to(device)
-            val_loss = img2mse(rgbs, vals)
-            val_psnr = mse2psnr(val_loss)
-            tqdm.write(f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}"+
-                        f"Val Loss: {val_loss} Val PSNR: {val_psnr}")
+            outstring =f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}" 
+            if i%args.i_val_eval==0:
+                inds = np.random.choice(i_val, size=args.i_val_set, replace=False)
+                val_set = images[inds]
+                if isinstance(val_set,torch.Tensor):
+                    val_set = val_set.cpu()
+                vals = np.stack(val_set,0)
+                with torch.no_grad():
+                    rgbs, disps = render_path(poses[inds], hwf, K, args.chunk, render_kwargs_train)
+                rgbs = torch.Tensor(rgbs).to(device)
+                vals = torch.Tensor(vals).to(device)
+                val_loss = img2mse(rgbs, vals)
+                val_psnr = mse2psnr(val_loss)
+                outstring+=f"Val Loss: {val_loss} Val PSNR: {val_psnr}"
+            tqdm.write(outstring)
+            
         """
             print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
             print('iter time {:.05f}'.format(dt))
