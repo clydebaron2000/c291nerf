@@ -94,7 +94,7 @@ def test_model_forward_backward():
 
     # tf
     from reference.run_nerf_helpers import init_nerf_model, get_embedder
-    from main import run_network
+    from reference.run_nerf import run_network
 
     # Init
     embed_fn, input_ch = get_embedder(multires, i_embed)
@@ -106,7 +106,7 @@ def test_model_forward_backward():
     skips = [4]
 
     model_tf = init_nerf_model(input_ch=input_ch, output_ch=output_ch, skips=skips,
-                               input_ch_views=input_ch_views, use_viewdirs=use_viewdirs)
+                                    input_ch_views=input_ch_views, use_viewdirs=use_viewdirs)
     weights = model_tf.get_weights()
 
     with tf.GradientTape() as tape:
