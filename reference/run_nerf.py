@@ -67,30 +67,6 @@ def render_rays(ray_batch,
 #                 netchunk=1024*64,
                 verbose=False,
                 pytest=False):
-
-#     def batchify(fn, chunk=netchunk):
-#         if chunk is None:
-#             return fn
-#         def ret(inputs):
-#             return tf.concat([fn(inputs[i:i+chunk]) for i in range(0, inputs.shape[0], chunk)], 0)
-#         return ret
-    
-#     def run_network(inputs, N_vdirs=None, fn=network_fn):
-#         inputs_flat = tf.reshape(inputs, [-1, inputs.shape[-1]])
-            
-#         embedded = embed_fn(inputs_flat)
-#         if embeddirs_fn is not None:
-#             viewdirs = ray_batch[:,-3:]
-#             input_dirs = tf.broadcast_to(viewdirs[:,None], inputs.shape)
-#             input_dirs_flat = tf.reshape(input_dirs, [-1, input_dirs.shape[-1]])
-#             embedded_dirs = embeddirs_fn(input_dirs_flat)
-#             embedded = tf.concat([embedded, embedded_dirs], -1)
-            
-#         if verbose: print('embedded range', embedded.numpy().min(), embedded.numpy().max(), embedded.numpy().mean())
-#         outputs_flat = batchify(fn)(embedded)
-#         outputs = tf.reshape(outputs_flat, list(inputs.shape[:-1]) + [outputs_flat.shape[-1]])
-#         return outputs
-        
         
     def raw2outputs(raw, z_vals, rays_d, pytest=False):
         raw2alpha = lambda raw, dists, act_fn=tf.nn.relu: 1.-tf.exp(-act_fn(raw)*dists)
@@ -190,7 +166,7 @@ def render_rays(ray_batch,
         ret['disp0'] = disp_map_0
         ret['acc0'] = acc_map_0
         ret['z_std'] = tf.math.reduce_std(z_samples, -1) # [N_rays]
-    print(ret)
+
     for k in ret:
         tf.debugging.check_numerics(ret[k], 'output {}'.format(k))
         
