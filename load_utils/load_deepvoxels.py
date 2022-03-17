@@ -32,7 +32,7 @@ def load_dv_data(args):
 
         world2cam_poses = bool(world2cam_poses)
 
-        print(cx,cy,f,height,width)
+        # print(cx,cy,f,height,width)
 
         cx = cx / width * trgt_sidelength
         cy = cy / height * trgt_sidelength
@@ -64,9 +64,9 @@ def load_dv_data(args):
     deepvoxels_base = '{}/train/{}/'.format(basedir, scene)
 
     full_intrinsic, grid_barycenter, scale, near_plane, world2cam_poses = parse_intrinsics(os.path.join(deepvoxels_base, 'intrinsics.txt'), H)
-    print(full_intrinsic, grid_barycenter, scale, near_plane, world2cam_poses)
+    # print(full_intrinsic, grid_barycenter, scale, near_plane, world2cam_poses)
     focal = full_intrinsic[0,0]
-    print(H, W, focal)
+    # print(H, W, focal)
 
     
     def dir2poses(posedir):
@@ -109,8 +109,6 @@ def load_dv_data(args):
     poses = np.concatenate([poses, valposes, testposes], 0)
     
     render_poses = testposes
-    
-    print(poses.shape, imgs.shape)
     
     hemi_R = np.mean(np.linalg.norm(poses[:,:3,-1], axis=-1))
     near = hemi_R-1.

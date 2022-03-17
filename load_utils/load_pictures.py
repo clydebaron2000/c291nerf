@@ -11,7 +11,6 @@ def txt_to_array(path):
 def load_pictures(args):
     basedir = args.datadir
     downsample = args.render_factor
-
     # render_poses = ['2_test_0000','2_test_0016','2_test_0055','2_test_0093','2_test_0160']
     # loading images
     imgs_dir = os.path.join(basedir, 'rgb')

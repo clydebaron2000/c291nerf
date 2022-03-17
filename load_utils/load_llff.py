@@ -43,14 +43,14 @@ def _minify(basedir, factors=[], resolutions=[]):
         if os.path.exists(imgdir):
             continue
             
-        print('Minifying', r, basedir)
+        # print('Minifying', r, basedir)
         
         os.makedirs(imgdir)
         check_output('cp {}/* {}'.format(imgdir_orig, imgdir), shell=True)
         
         ext = imgs[0].split('.')[-1]
         args = ' '.join(['mogrify', '-resize', resizearg, '-format', 'png', '*.{}'.format(ext)])
-        print(args)
+        # print(args)
         os.chdir(imgdir)
         check_output(args, shell=True)
         os.chdir(wd)
