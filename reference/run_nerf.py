@@ -190,7 +190,7 @@ def render_rays(ray_batch,
         ret['disp0'] = disp_map_0
         ret['acc0'] = acc_map_0
         ret['z_std'] = tf.math.reduce_std(z_samples, -1) # [N_rays]
-        
+    print(ret)
     for k in ret:
         tf.debugging.check_numerics(ret[k], 'output {}'.format(k))
         
