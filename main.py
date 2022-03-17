@@ -479,9 +479,10 @@ def train(args):
             makedirs(testsavedir, exist_ok=True)
             print('test poses shape', render_poses.shape)
 
-            rgbs, _ = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
+            rgbs, disps = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
             print('Done rendering', testsavedir)
-            imageio.mimwrite(path_join(testsavedir, 'video.mp4'), to8b(rgbs), fps=30, quality=8)
+            imageio.mimwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs), fps=30, quality=8)
+            imageio.mimwrite(path_join(testsavedir, 'disps_video.mp4'), to8b(disps/np.max(disps)*255), fps=30, quality=8)
             # early break
             return
 
