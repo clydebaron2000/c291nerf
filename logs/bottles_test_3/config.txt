@@ -1,0 +1,34 @@
+expname = bottles_test_3
+basedir = ./logs
+datadir = ./data/bottles
+dataset_type = pictures
+
+gpu = 3
+# how to render only desired test inds
+render_poses_filter = [0,12,55,93,160]
+
+no_batching = False
+
+random_seed = 1234
+
+N_samples = 64
+N_importance = 128
+
+use_viewdirs = True
+
+i_testset = 100
+
+render_test = True
+render_factor = 1
+N_rand = 1024
+
+netwidth = 256
+netdepth = 8
+
+chunk = 8192
+netchunk = 16384
+
+i_weights = 10000
+n_iters = 100000
+i_testset = 100000
+i_video = 100000
