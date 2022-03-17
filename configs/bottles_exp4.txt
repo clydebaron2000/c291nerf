@@ -3,7 +3,7 @@ basedir = ./logs
 datadir = ./data/bottles
 dataset_type = pictures
 
-gpu = 1
+gpu = 2
 # how to render only desired test inds
 render_poses_filter = [0,12,55,93,160]
 
@@ -20,7 +20,7 @@ i_testset = 1000
 
 render_test = True
 render_factor = 1
-N_rand = 2048
+N_rand = 1028
 
 lrate_decay = 500
 
@@ -32,3 +32,5 @@ i_weights = 10000
 n_iters = 100000
 i_testset = 100000
 i_video = 100000
+i_val_set = 20
+i_val_eval = 10000

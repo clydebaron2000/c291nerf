@@ -16,7 +16,7 @@ N_importance = 64
 
 use_viewdirs = True
 
-i_testset = 1000
+i_testset = 10000
 
 render_test = True
 render_factor = 1
@@ -27,8 +27,8 @@ lrate_decay = 500
 multires = 10
 multires_views = 4
 
-
 i_weights = 10000
 n_iters = 100000
-i_testset = 100000
 i_video = 100000
+i_val_eval = 10000
+i_val_set = 20
