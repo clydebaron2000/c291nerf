@@ -658,11 +658,11 @@ def train(args):
     
         if i%args.i_print==0:
             # validation evaluation
-            val_set = images[i_val]
-            val_set = torch.randperm(len(val_set))[:args.i_val_set]
+            inds = np.random.choice(i_val, size=args.i_val_set, replace=False)
+            val_set = images[inds]
             vals = np.stack(val_set.cpu(),0)
             with torch.no_grad():
-                rgbs, disps = render_path(poses[i_val], hwf, K, args.chunk, render_kwargs_test)
+                rgbs, disps = render_path(poses[inds], hwf, K, args.chunk, render_kwargs_test)
             rgbs = torch.Tensor(rgbs).to(device)
             vals = torch.Tensor(vals).to(device)
             val_loss = img2mse(rgbs, vals)
