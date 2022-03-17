@@ -660,7 +660,7 @@ def train(args):
         if i%args.i_print==0:
             # validation evaluation
             outstring =f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}" 
-            if i%args.i_val_eval==0:
+            if i%args.i_val_eval==0 and i > 0:
                 inds = i_val[:args.i_val_set]
                 val_set = images[inds]
                 if isinstance(val_set,torch.Tensor):
@@ -672,7 +672,7 @@ def train(args):
                 vals = torch.Tensor(vals).to(device)
                 val_loss = img2mse(rgbs, vals)
                 val_psnr = mse2psnr(val_loss)
-                outstring+=f"Val Loss: {val_loss} Val PSNR: {val_psnr}"
+                outstring+=f" Val Loss: {val_loss} Val PSNR: {val_psnr.item()}"
             tqdm.write(outstring)
             
         """
