@@ -36,9 +36,13 @@ def test_get_rays():
         [-0.3661, -0.2975, 0.8817, 3.554],
         [0, 0.9475, 0.3197, 1.288]
     ])
-
-    rays_o_np, rays_d_np = get_rays_np(H, W, focal, pose)
-    rays_o_torch, rays_d_torch = get_rays(H, W, focal, torch.Tensor(pose))
+    K = np.array([
+        [focal, 0, W/2],
+        [0, focal, H/2],
+        [0, 0, 1]
+    ])
+    rays_o_np, rays_d_np = get_rays_np(H, W, K, pose)
+    rays_o_torch, rays_d_torch = get_rays(H, W, K, torch.Tensor(pose))
 
     assert np.allclose(rays_o_np, rays_o_torch.numpy())
     assert np.allclose(rays_d_np, rays_d_torch.numpy())
