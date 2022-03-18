@@ -41,8 +41,8 @@ def load_data_from_args(args):
 
     print(f'Loaded {data_type}', images.shape, render_poses.shape, hwf, args.datadir)
 
-    if args.white_bkgd:
-        print("Adding white background")
+    if args.white_bkgd and data_type != "pictures":
+        print("Adding white background to synthetic images")
         images = images[...,:3]*images[...,-1:] + (1.-images[...,-1:])
     else:
         images = images[...,:3]
