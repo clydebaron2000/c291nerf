@@ -410,7 +410,7 @@ def render_rays(ray_batch,
 
 #     raw = run_network(pts)
     raw = network_query_fn(pts, viewdirs, network_fn)
-    rgb_map, disp_map, acc_map, weights, _ = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
+    rgb_map, disp_map, acc_map, weights, depth_map = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
 
     if N_importance > 0:
 
@@ -427,7 +427,7 @@ def render_rays(ray_batch,
 #         raw = run_network(pts, fn=run_fn)
         raw = network_query_fn(pts, viewdirs, run_fn)
 
-        rgb_map, disp_map, acc_map, weights, _ = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
+        rgb_map, disp_map, acc_map, weights, depth_map = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
 
     ret = {'rgb_map' : rgb_map, 'disp_map' : disp_map, 'acc_map' : acc_map}
     if ret_raw:
@@ -671,12 +671,12 @@ def train(args):
             print('Done, saving', rgbs.shape, disps.shape)
             moviebase = path_join(basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
             imageio.mimwrite(moviebase + 'rgb.mp4', to8b(rgbs), fps=30, quality=8)
-            imageio.mimwrite(moviebase + 'disp.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
+            imageio.mimwrite(moviebase + 'depth.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
             wandb.log({
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.gif': wandb.Image(moviebase + 'rgb.mp4', fps=10, format='gif'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Image(moviebase + 'disp.mp4', fps=10, format='gif'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.mp4': wandb.Video(moviebase + 'rgb.mp4'),
-                '{}_spiral_{:06d}_'.format(expname, i)+'disp.mp4': wandb.Video(moviebase + 'disp.mp4'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'depth.mp4': wandb.Video(moviebase + 'disp.mp4'),
             })
             if args.use_viewdirs:
                 render_kwargs_test['c2w_staticcam'] = render_poses[30][:3,:4]
