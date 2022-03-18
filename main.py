@@ -470,7 +470,7 @@ def train(args):
         with open(file_path, 'w') as file:
             file.write(open(args.config, 'r').read())
     wandb.init(
-        project=args.project, 
+        project='C291 NeRF', 
         name=expname, 
         dir=path_join(basedir, expname), 
         config=vars(args)
@@ -726,7 +726,7 @@ def train(args):
             
             # print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
             print('iter time {:.05f}'.format(dt))
-            wandb.log({"iter time": time0-time.time()})
+            wandb.log({"iter time": time.time()-time0})
         """
             with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_print):
                 tf.contrib.summary.scalar('loss', loss)
