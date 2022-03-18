@@ -3,7 +3,7 @@ basedir = ./logs
 datadir = ./data/bottles
 dataset_type = pictures
 
-gpu = 2
+gpu = 3
 
 half_res = False
 no_batching = True

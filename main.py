@@ -480,9 +480,10 @@ def train(args):
             print('test poses shape', render_poses.shape)
 
             rgbs, disps = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
-            print('Done rendering', testsavedir)
-            imageio.mimwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs), fps=30, quality=8)
-            imageio.mimwrite(path_join(testsavedir, 'disps_video.mp4'), to8b(disps/np.max(disps)*255), fps=30, quality=8)
+            disps = np.repeat(np.expand_dims(disps,axis=3),3,axis=3)
+            # because rgbs may be slightly over 1
+            imageio.mimwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs/np.max(rgbs)), fps=30, quality=8)
+            imageio.mimwrite(path_join(testsavedir, 'disps_video.mp4'), to8b(disps/np.max(disps)), fps=30, quality=8)
             # early break
             return
 
