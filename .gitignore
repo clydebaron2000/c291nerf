@@ -11,4 +11,4 @@ logs/*test*/*
 !logs/*/*0000.tar
 !logs/*/*.mp4
 !logs/*/*.txt
-.env
+.env*

@@ -1,7 +1,5 @@
-import json
-import random
-import sys
-import time
+from datetime import datetime as date
+import json, random, sys, time
 from os import listdir, makedirs
 from os.path import join as path_join
 
@@ -11,6 +9,7 @@ import numpy as np
 import torch
 from torch.nn.functional import relu as relu_func
 from tqdm import tqdm, trange
+import wandb
 
 from load import load_data_from_args
 from utils.nerf_helpers import *
@@ -135,7 +134,14 @@ def render(H, W, K, chunk=1024*32, rays=None, c2w=None, ndc=True,
     return ret_list + [ret_dict]
 
 
-def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedir=None, render_factor=0, img_prefix=''):
+def render_path(render_poses, hwf, K, chunk, render_kwargs,
+                gt_imgs=None, 
+                savedir=None, 
+                render_factor=0, 
+                img_prefix='',
+                img_suffix='',
+                save_disps=False
+                ):
 
     H, W, focal = hwf
 
@@ -163,6 +169,11 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedi
             rgb8 = to8b(rgbs[-1])
             filename = path_join(savedir, img_prefix+'{:03d}.png'.format(i))
             imageio.imwrite(filename, rgb8)
+            wandb.log({img_prefix+'{:03d}.png'.format(i): wandb.Image(filename)})
+            if save_disps:
+                filename = path_join(savedir, img_prefix+'{:03d}_disp.png'.format(i))
+                imageio.imwrite(filename, to8b(disps[-1]))
+                wandb.log({img_prefix+'{:03d}_disp.png'.format(i): wandb.Image(filename)})
 
     rgbs = np.stack(rgbs, 0)
     disps = np.stack(disps, 0)
@@ -170,10 +181,18 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs, gt_imgs=None, savedi
     if gt_imgs is not None and render_factor==0:
         with torch.no_grad():
             gts = np.stack(gt_imgs,0)
-            mse = img2mse(rgb.cpu().numpy(), gts)
+            if isinstance(gts,torch.Tensor):
+                gts = gts.cpu()
+            loss = img2mse(rgb.cpu().numpy(), gts)
             # p = -10. * np.log10(np.mean(np.square(rgb.cpu().numpy() - gt_imgs[i])))
-            psnr = mse2psnr(mse)
-            print(f'{img_prefix} set PSNR : {psnr}')
+            psnr = mse2psnr(loss)
+            output = f'[{img_prefix}] Iter: {img_suffix} Loss: {loss:.3f} {img_prefix} PSNR: {psnr:.3f}'
+            print(output)
+            wandb.log({
+                f'{img_prefix} Iter': img_suffix,
+                f'{img_prefix} Loss': loss,
+                f'{img_prefix} PSNR': psnr
+            })
 
     return rgbs, disps
 
@@ -226,6 +245,7 @@ def create_nerf(args):
         print('Found ckpts')
         ckpt_path = ckpts[-1]
         print('Reloading from', ckpt_path)
+        wandb.log({'Reloading from': ckpt_path})
         ckpt = torch.load(ckpt_path)
 
         start = ckpt['global_step']
@@ -260,6 +280,7 @@ def create_nerf(args):
     render_kwargs_test['perturb'] = False
     render_kwargs_test['raw_noise_std'] = 0.
 
+    wandb.watch(model,log='all')
     # change render_kwargs_train
     return render_kwargs_train, render_kwargs_test, start, grad_vars, optimizer
 
@@ -448,7 +469,12 @@ def train(args):
         file_path = path_join(basedir, expname, 'config.txt')
         with open(file_path, 'w') as file:
             file.write(open(args.config, 'r').read())
-
+    wandb.init(
+        project=args.project, 
+        name=expname, 
+        dir=path_join(basedir, expname), 
+        config=vars(args)
+    )
     # Create nerf model
     # grad_vars unused
     render_kwargs_train, render_kwargs_test, start, _, nerf_optimizer = create_nerf(args)
@@ -484,6 +510,15 @@ def train(args):
             # because rgbs may be slightly over 1
             imageio.imwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs/np.max(rgbs)), fps=30, quality=8)
             imageio.imwrite(path_join(testsavedir, 'disps_video.mp4'), to8b(disps/np.max(disps)), fps=30, quality=8)
+            # logs
+            wandb.log(
+                {
+                    "render_only_rbgs_gif": wandb.Video(rgbs, fps=30, format='gif'),
+                    "render_only_disps_gif": wandb.Video(disps, fps=30, format='gif'),
+                    "render_only_rbgs_mp4": wandb.Video(path_join(testsavedir, 'rbgs_video.mp4'), fps=10, format='mp4'),
+                    "render_only_disps_mp4": wandb.Video(path_join(testsavedir, 'disps_video.mp4'), fps=10, format='mp4'),
+                }
+            )
             # early break
             return
 
@@ -625,6 +660,7 @@ def train(args):
                 'network_fine_state_dict': render_kwargs_train['network_fine'].state_dict(),
                 'optimizer_state_dict': nerf_optimizer.state_dict(),
             }, path)
+            wandb.save("model_iter_{:06d}.tar".format(i))
             print('Saved checkpoints at', path)
 
         # TODO: Consolidate code
@@ -636,13 +672,22 @@ def train(args):
             moviebase = path_join(basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
             imageio.mimwrite(moviebase + 'rgb.mp4', to8b(rgbs), fps=30, quality=8)
             imageio.mimwrite(moviebase + 'disp.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
-
+            wandb.log({
+                '{}_spiral_{:06d}_'.format(expname, i)+'rgb.gif': wandb.Image(moviebase + 'rgb.mp4', fps=10, format='gif'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Image(moviebase + 'disp.mp4', fps=10, format='gif'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'rgb.mp4': wandb.Video(moviebase + 'rgb.mp4'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'disp.mp4': wandb.Video(moviebase + 'disp.mp4'),
+            })
             if args.use_viewdirs:
                 render_kwargs_test['c2w_staticcam'] = render_poses[30][:3,:4]
                 with torch.no_grad():
                     rgbs_still, _ = render_path(render_poses, hwf, K ,args.chunk, render_kwargs_test)
                 render_kwargs_test['c2w_staticcam'] = None
                 imageio.mimwrite(moviebase + 'rgb_still.mp4', to8b(rgbs_still), fps=30, quality=8)
+                wandb.log({
+                    '{}_spiral_{:06d}_'.format(expname, i)+'rgb_still.gif': wandb.Image(moviebase + 'rgb_still.mp4', fps=10, format='gif'),
+                    '{}_spiral_{:06d}_'.format(expname, i)+'rgb_still.mp4': wandb.Video(moviebase + 'rgb_still.mp4'),
+                })
 
         if i%args.i_testset==0 and i > 0:
             testsavedir = path_join(basedir, expname, 'testset_{:06d}'.format(i))
@@ -650,7 +695,7 @@ def train(args):
             inds = i_test
             if args.render_poses_filter:
                 inds = i_test[args.render_poses_filter]
-            print('test poses shape', poses[inds].shape)
+            # print('test poses shape', poses[inds].shape)
             # TODO: CHANGE
             # print('test poses shape', poses[[30]].shape)
             with torch.no_grad():
@@ -659,28 +704,30 @@ def train(args):
                                 savedir=testsavedir)
             print('Saved test set')
     
+        if i%args.i_val_eval==0 and i > 0:
+            inds = i_val[:args.i_val_set]
+            val_set = images[inds]
+            with torch.no_grad():
+                rgbs, disps = render_path(poses[inds], hwf, K, args.chunk, render_kwargs_train,
+                                            gt_imgs=val_set,
+                                            img_prefix=f'VAL',
+                                            img_suffix=i
+                                            )
+
         if i%args.i_print==0:
             # validation evaluation
-            outstring =f"[TRAIN] Iter: {i} Iter Loss: {loss.item()} Iter PSNR: {psnr.item()}" 
-            if i%args.i_val_eval==0 and i > 0:
-                inds = i_val[:args.i_val_set]
-                val_set = images[inds]
-                if isinstance(val_set,torch.Tensor):
-                    val_set = val_set.cpu()
-                vals = np.stack(val_set,0)
-                with torch.no_grad():
-                    rgbs, disps = render_path(poses[inds], hwf, K, args.chunk, render_kwargs_train)
-                rgbs = torch.Tensor(rgbs).to(device)
-                vals = torch.Tensor(vals).to(device)
-                val_loss = img2mse(rgbs, vals)
-                val_psnr = mse2psnr(val_loss)
-                outstring+=f" Val Loss: {val_loss} Val PSNR: {val_psnr.item()}"
+            outstring =f"[TRAIN] Iter: {i} Loss: {loss.item()} PSNR: {psnr.item()}" 
             tqdm.write(outstring)
+            wandb.log({
+                "TRAIN Iter": i,
+                "TRAIN Loss": loss.item(),
+                "TRAIN PSNR": psnr.item(),
+            })
             
-        """
-            print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
+            # print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
             print('iter time {:.05f}'.format(dt))
-
+            wandb.log({"iter time": time0-time.time()})
+        """
             with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_print):
                 tf.contrib.summary.scalar('loss', loss)
                 tf.contrib.summary.scalar('psnr', psnr)

@@ -18,4 +18,6 @@ gdown --id 107f10G02el4EgIE_4852NH9WhdkL1jbN -O ./data/
 echo "\t unzipping ./data/bottles.zip"
 unzip ./data/bottles.zip -d ./data/
 rm -rf ./data/__*
+echo "requesting for wandb login"
+wandb login
 echo "set-up successful"
