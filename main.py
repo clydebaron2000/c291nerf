@@ -180,9 +180,9 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs,
 
     if gt_imgs is not None and render_factor==0:
         with torch.no_grad():
-            gts = np.stack(gt_imgs,0)
             if isinstance(gts,torch.Tensor):
                 gts = gts.cpu()
+            gts = np.stack(gt_imgs,0)
             loss = img2mse(rgb.cpu().numpy(), gts)
             # p = -10. * np.log10(np.mean(np.square(rgb.cpu().numpy() - gt_imgs[i])))
             psnr = mse2psnr(loss)
