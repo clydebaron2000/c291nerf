@@ -12,4 +12,4 @@ logs/*test*/*
 !logs/*/*.mp4
 !logs/*/*.txt
 .env*
-**/wandb
+logs/*/wandb
