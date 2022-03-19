@@ -29,5 +29,16 @@ multires_views = 4
 
 i_weights = 10000
 n_iters = 300000
+<<<<<<< HEAD
+i_testset = 10000
+i_video = 10000
+
+i_val_set = 10
+i_val_eval = 1000
+
+chunk = 65536
+netchunk = 131072
+=======
 i_testset = 100000
 i_video = 100000
+>>>>>>> 9b27dd7f04019c2e5bcbfd3e83fed79877ef83bf
