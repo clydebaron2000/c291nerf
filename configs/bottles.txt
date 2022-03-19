@@ -23,8 +23,8 @@ N_rand = 256
 netwidth = 128
 netdepth = 8
 
-chunk = 8192
-netchunk = 16384
 
 i_weights = 10000
 n_iters = 100000
+
+i_testset=10000000

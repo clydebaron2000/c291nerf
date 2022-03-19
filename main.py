@@ -140,7 +140,7 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs,
                 render_factor=0, 
                 img_prefix='',
                 img_suffix='',
-                save_disps=False
+                save_depths=False
                 ):
 
     H, W, focal = hwf
@@ -153,15 +153,23 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs,
 
     rgbs = []
     disps = []
+    depths = []
 
     t = time.time()
     for i, c2w in enumerate(tqdm(render_poses,desc='Rendering poses: ')):
         if DEBUG:
             print(i, time.time() - t)
         t = time.time()
-        rgb, disp, acc, _ = render(H, W, K, chunk=chunk, c2w=c2w[:3,:4], **render_kwargs)
+        rgb, disp, acc, ret = render(H, W, K, chunk=chunk, c2w=c2w[:3,:4], **render_kwargs)
         rgbs.append(rgb.cpu().numpy())
         disps.append(disp.cpu().numpy())
+        depths.append(ret['depth_map'].cpu().numpy())
+        # print(torch.max(rgb), type(rgb))
+        # print(torch.max(disp), type(disp))
+        # print(ret['depth_map'].shape, type(ret['depth_map']))
+        # print(torch.max(ret['depth_map']))
+        
+        # assert False, "BREAK"
         if DEBUG and i==0:
             print(rgb.shape, disp.shape)
 
@@ -170,31 +178,34 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs,
             filename = path_join(savedir, img_prefix+'{:03d}.png'.format(i))
             imageio.imwrite(filename, rgb8)
             wandb.log({img_prefix+'{:03d}.png'.format(i): wandb.Image(filename)})
-            if save_disps:
-                filename = path_join(savedir, img_prefix+'{:03d}_disp.png'.format(i))
-                imageio.imwrite(filename, to8b(disps[-1]))
-                wandb.log({img_prefix+'{:03d}_disp.png'.format(i): wandb.Image(filename)})
-
+            if save_depths:
+                filename = path_join(savedir, img_prefix+'{:03d}_depth.png'.format(i))
+                imageio.imwrite(filename, to8b(depths[-1]))
+                wandb.log({
+                    img_prefix+'{:03d}_depth.png'.format(i): wandb.Image(filename)
+                    })
+    
     rgbs = np.stack(rgbs, 0)
     disps = np.stack(disps, 0)
+    depths = np.stack(depths, 0)
 
     if gt_imgs is not None and render_factor==0:
         with torch.no_grad():
             if isinstance(gt_imgs,torch.Tensor):
                 gt_imgs = gt_imgs.cpu()
             gts = np.stack(gt_imgs,0)
-            val_loss = img2mse(rgbs.cpu(), gts)
-            # p = -10. * np.log10(np.mean(np.square(rgb.cpu().numpy() - gt_imgs[i])))
-            val_psnr = mse2psnr(val_loss)
+            val_loss = np.mean((rgbs-gts)**2)
+            val_psnr = -10. * np.log10(val_loss)
             output = f'[{img_prefix}] Iter: {img_suffix} Loss: {val_loss:.3f} {img_prefix} PSNR: {val_psnr:.3f}'
+
             print(output)
             wandb.log({
-                f'{img_prefix} Iter': img_suffix,
-                f'{img_prefix} Loss': val_loss,
-                f'{img_prefix} PSNR': val_psnr
+                f'{img_prefix}/Iter': img_suffix,
+                f'{img_prefix}/Loss': val_loss,
+                f'{img_prefix}/PSNR': val_psnr
             })
 
-    return rgbs, disps
+    return rgbs, disps, depths
 
 
 def create_nerf(args):
@@ -323,7 +334,8 @@ def raw2outputs(raw, z_vals, rays_d, raw_noise_std=0, white_bkgd=False, pytest=F
     rgb_map = torch.sum(weights[...,None] * rgb, -2)  # [N_rays, 3]
 
     depth_map = torch.sum(weights * z_vals, -1)
-    disp_map = 1./torch.max(1e-10 * torch.ones_like(depth_map), depth_map / torch.sum(weights, -1))
+    # disp_map = 1./torch.max(1e-10 * torch.ones_like(depth_map), depth_map / torch.sum(weights, -1))
+    disp_map = depth2dist(depth_map,weights)
     acc_map = torch.sum(weights, -1)
 
     if white_bkgd:
@@ -429,7 +441,7 @@ def render_rays(ray_batch,
 
         rgb_map, disp_map, acc_map, weights, depth_map = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
 
-    ret = {'rgb_map' : rgb_map, 'disp_map' : disp_map, 'acc_map' : acc_map}
+    ret = {'rgb_map' : rgb_map, 'disp_map' : disp_map, 'acc_map' : acc_map, 'depth_map' : depth_map}
     if ret_raw:
         ret['raw'] = raw
     if N_importance > 0:
@@ -505,18 +517,18 @@ def train(args):
             makedirs(testsavedir, exist_ok=True)
             print('test poses shape', render_poses.shape)
 
-            rgbs, disps = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
-            disps = np.repeat(np.expand_dims(disps,axis=3),3,axis=3)
+            rgbs, _, depths = render_path(render_poses[:5], hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
+            depths = np.repeat(np.expand_dims(depths,axis=3),3,axis=3)
             # because rgbs may be slightly over 1
-            imageio.imwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs/np.max(rgbs)), fps=30, quality=8)
-            imageio.imwrite(path_join(testsavedir, 'disps_video.mp4'), to8b(disps/np.max(disps)), fps=30, quality=8)
+            imageio.mimwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs/np.max(rgbs)), fps=30, quality=8)
+            imageio.mimwrite(path_join(testsavedir, 'depths_video.mp4'), to8b(depths/np.max(depths)), fps=30, quality=8)
             # logs
             wandb.log(
                 {
                     "render_only_rbgs_gif": wandb.Video(rgbs, fps=30, format='gif'),
-                    "render_only_disps_gif": wandb.Video(disps, fps=30, format='gif'),
+                    "render_only_depths_gif": wandb.Video(depths, fps=30, format='gif'),
                     "render_only_rbgs_mp4": wandb.Video(path_join(testsavedir, 'rbgs_video.mp4'), fps=10, format='mp4'),
-                    "render_only_disps_mp4": wandb.Video(path_join(testsavedir, 'disps_video.mp4'), fps=10, format='mp4'),
+                    "render_only_depths_mp4": wandb.Video(path_join(testsavedir, 'depths_video.mp4'), fps=10, format='mp4'),
                 }
             )
             # early break
@@ -544,7 +556,7 @@ def train(args):
 
         print('done')
         i_batch = 0
-        
+
         # Move training data to GPU
         images = torch.Tensor(images).to(device)
         rays_rgb = torch.Tensor(rays_rgb).to(device)
@@ -553,8 +565,8 @@ def train(args):
     poses = torch.Tensor(poses).to(device)
 
     if args.i_val_eval > 0:
-        val_imgs = images[i_val[:args.i_val_eval]]
-        val_poses = poses[i_val[:args.i_val_eval]]
+        val_imgs = images[i_val[:args.i_val_set]]
+        val_poses = poses[i_val[:args.i_val_set]]
 
     N_iters = args.n_iters + 1
     print('Begin')
@@ -653,6 +665,16 @@ def train(args):
 
         ##### Rest is logging
 
+        if i%args.i_print==0:
+            outstring =f"[TRAIN] Iter: {i} Loss: {train_loss.item()} PSNR: {train_psnr.item()} Iter time: {dt:.05f}" 
+            tqdm.write(outstring)
+            wandb.log({
+                "TRAIN/Iter": i,
+                "TRAIN/Loss": train_loss.item(),
+                "TRAIN/PSNR": train_psnr.item(),
+                "TRAIN/Iter time": dt
+            })
+
         # logging weights
         if i%args.i_weights==0:
             path = path_join(basedir, expname, '{:06d}.tar'.format(i))
@@ -668,26 +690,28 @@ def train(args):
         # TODO: Consolidate code
         if i%args.i_video==0 and i > 0:
             # Turn on testing mode
+            print('video')
             with torch.no_grad():
-                rgbs, disps = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test)
-            print('Done, saving', rgbs.shape, disps.shape)
+                rgbs, _, depths = render_path(render_poses[:5], hwf, K, args.chunk, render_kwargs_test)
+            print('Done, saving', rgbs.shape, depths.shape)
             moviebase = path_join(basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
             imageio.mimwrite(moviebase + 'rgb.mp4', to8b(rgbs), fps=30, quality=8)
-            imageio.mimwrite(moviebase + 'depth.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
+            imageio.mimwrite(moviebase + 'depth.mp4', to8b(depths / np.max(depths)), fps=30, quality=8)
             wandb.log({
-                '{}_spiral_{:06d}_'.format(expname, i)+'rgb.gif': wandb.Image(moviebase + 'rgb.mp4', fps=10, format='gif'),
-                '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Image(moviebase + 'disp.mp4', fps=10, format='gif'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'rgb.gif': wandb.Video(moviebase + 'rgb.mp4', format='gif'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Video(moviebase + 'disp.mp4', format='gif'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.mp4': wandb.Video(moviebase + 'rgb.mp4'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'depth.mp4': wandb.Video(moviebase + 'disp.mp4'),
             })
             if args.use_viewdirs:
+                print('static video')
                 render_kwargs_test['c2w_staticcam'] = render_poses[30][:3,:4]
                 with torch.no_grad():
-                    rgbs_still, _ = render_path(render_poses, hwf, K ,args.chunk, render_kwargs_test)
+                    rgbs_still, *_ = render_path(render_poses[:5], hwf, K ,args.chunk, render_kwargs_test)
                 render_kwargs_test['c2w_staticcam'] = None
                 imageio.mimwrite(moviebase + 'rgb_still.mp4', to8b(rgbs_still), fps=30, quality=8)
                 wandb.log({
-                    '{}_spiral_{:06d}_'.format(expname, i)+'rgb_still.gif': wandb.Image(moviebase + 'rgb_still.mp4', fps=10, format='gif'),
+                    '{}_spiral_{:06d}_'.format(expname, i)+'rgb_still.gif': wandb.Video(moviebase + 'rgb_still.mp4', format='gif'),
                     '{}_spiral_{:06d}_'.format(expname, i)+'rgb_still.mp4': wandb.Video(moviebase + 'rgb_still.mp4'),
                 })
 
@@ -697,9 +721,6 @@ def train(args):
             inds = i_test
             if args.render_poses_filter:
                 inds = i_test[args.render_poses_filter]
-            # print('test poses shape', poses[inds].shape)
-            # TODO: CHANGE
-            # print('test poses shape', poses[[30]].shape)
             with torch.no_grad():
                 pose_filter = torch.Tensor(poses[inds]).to(device)
                 render_path(pose_filter, hwf, K, args.chunk, render_kwargs_test,
@@ -709,27 +730,17 @@ def train(args):
                 del pose_filter
             print('Saved test set')
     
-        if i%args.i_val_eval==0 and i > 0:
+        if args.i_val_eval and i%args.i_val_eval==0 and i > 0:
+            print("Evaluating on validation set")
             with torch.no_grad():
-                rgbs, disps = render_path(val_poses, hwf, K, args.chunk, render_kwargs_train,
+                render_path(val_poses, hwf, K, args.chunk, render_kwargs_train,
                                             gt_imgs=val_imgs,
                                             img_prefix=f'VAL',
                                             img_suffix=i
                                             )
 
-        if i%args.i_print==0:
-            # validation evaluation
-            outstring =f"[TRAIN] Iter: {i} Loss: {train_loss.item()} PSNR: {train_psnr.item()}" 
-            tqdm.write(outstring)
-            wandb.log({
-                "TRAIN Iter": i,
-                "TRAIN Loss": train_loss.item(),
-                "TRAIN PSNR": train_psnr.item(),
-            })
+    
             
-            # print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
-            print('iter time {:.05f}'.format(dt))
-            wandb.log({"iter time": time.time()-time0})
         """
             with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_print):
                 tf.contrib.summary.scalar('loss', loss)

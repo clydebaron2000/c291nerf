@@ -9,6 +9,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 # Misc
+depth2dist = lambda depth_map, weights:1./torch.max(1e-10 * torch.ones_like(depth_map), depth_map / torch.sum(weights, -1))
+dist2depth = lambda dist_map:1./torch.max(1e-10 * torch.ones_like(dist_map), dist_map)
 img2mse = lambda x, y : torch.mean((x - y) ** 2)
 mse2psnr = lambda x : -10. * torch.log(x) / torch.log(torch.Tensor([10.]))
 to8b = lambda x : (255*np.clip(x,0,1)).astype(np.uint8)
