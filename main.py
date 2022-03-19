@@ -1,6 +1,6 @@
 from datetime import datetime as date
 import json, random, sys, time
-from os import listdir, makedirs
+from os import listdir, makedirs, mkdir
 from os.path import join as path_join
 
 import imageio
@@ -515,9 +515,9 @@ def train(args):
 
             testsavedir = path_join(basedir, expname, 'renderonly_{}_{:06d}'.format('test' if args.render_test else 'path', start))
             makedirs(testsavedir, exist_ok=True)
-            print('test poses shape', render_poses.shape)
+            print('test poses shape', render_poses[args.render_poses_filter].shape)
 
-            rgbs, _, depths = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
+            rgbs, _, depths = render_path(render_poses[args.render_poses_filter], hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
 
             depths = np.repeat(np.expand_dims(depths,axis=3),3,axis=3)
             # because rgbs may be slightly over 1
@@ -735,11 +735,14 @@ def train(args):
     
         if args.i_val_eval and i%args.i_val_eval==0 and i > 0:
             print("Evaluating on validation set")
+            filename = path_join(basedir, expname, 'val_eval_{:06d}'.format(i))
+            mkdir(filename)
             with torch.no_grad():
                 render_path(val_poses, hwf, K, args.chunk, render_kwargs_train,
                                             gt_imgs=val_imgs,
                                             img_prefix=f'VAL',
-                                            img_suffix=i
+                                            img_suffix=i,
+                                            savedir=filename
                                             )
 
     
