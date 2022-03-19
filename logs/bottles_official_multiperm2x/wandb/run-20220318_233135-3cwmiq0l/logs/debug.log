@@ -1,0 +1,25 @@
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_setup.py:_flush():75] Loading settings from /root/.config/wandb/settings
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_setup.py:_flush():75] Loading settings from /workspace/c291nerf/wandb/settings
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_setup.py:_flush():75] Loading settings from environment variables: {}
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_setup.py:_flush():75] Inferring run settings from compute environment: {'program_relpath': 'main.py', 'program': 'main.py'}
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_init.py:_log_setup():405] Logging user logs to ./logs/bottles_official_multiperm2x/wandb/run-20220318_233135-3cwmiq0l/logs/debug.log
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_init.py:_log_setup():406] Logging internal logs to ./logs/bottles_official_multiperm2x/wandb/run-20220318_233135-3cwmiq0l/logs/debug-internal.log
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_init.py:init():439] calling init triggers
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_init.py:init():442] wandb.init called with sweep_config: {}
+config: {'config': './configs/bottles_official.txt', 'expname': 'bottles_official_multiperm2x', 'basedir': './logs', 'datadir': './data/bottles', 'gpu': 2, 'netdepth': 8, 'netwidth': 256, 'netdepth_fine': 8, 'netwidth_fine': 256, 'N_rand': 4096, 'lrate': 0.0005, 'lrate_decay': 100, 'chunk': 32768, 'netchunk': 65536, 'no_batching': False, 'no_reload': False, 'ft_path': None, 'random_seed': 1234, 'precrop_iters': 0, 'precrop_frac': 0.5, 'N_samples': 64, 'N_importance': 128, 'perturb': 1.0, 'use_viewdirs': True, 'i_embed': 0, 'multires': 20, 'multires_views': 8, 'raw_noise_std': 0.0, 'render_only': False, 'render_test': True, 'render_predictions': False, 'render_predictions_dir': './logs/imgs', 'render_factor': 1, 'render_poses_filter': [0, 12, 55, 93, 160], 'dataset_type': 'pictures', 'testskip': 8, 'shape': 'greek', 'white_bkgd': False, 'half_res': False, 'factor': 8, 'no_ndc': False, 'lindisp': False, 'spherify': False, 'llffhold': 8, 'n_iters': 100000, 'i_print': 100, 'i_val_set': 10, 'i_val_eval': 1000, 'i_img': 500, 'i_weights': 10000, 'i_testset': 100000, 'i_video': 100000}
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [wandb_init.py:init():492] starting backend
+2022-03-18 23:31:35,972 INFO    MainThread:11356 [backend.py:_multiprocessing_setup():99] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2022-03-18 23:31:35,982 INFO    MainThread:11356 [backend.py:ensure_launched():219] starting backend process...
+2022-03-18 23:31:35,989 INFO    MainThread:11356 [backend.py:ensure_launched():224] started backend process with pid: 11411
+2022-03-18 23:31:35,990 INFO    MainThread:11356 [wandb_init.py:init():501] backend started and connected
+2022-03-18 23:31:35,993 INFO    MainThread:11356 [wandb_init.py:init():565] updated telemetry
+2022-03-18 23:31:36,005 INFO    MainThread:11356 [wandb_init.py:init():596] communicating run to backend with 30 second timeout
+2022-03-18 23:31:36,793 INFO    MainThread:11356 [wandb_run.py:_on_init():1759] communicating current version
+2022-03-18 23:31:36,811 INFO    MainThread:11356 [wandb_run.py:_on_init():1763] got version response 
+2022-03-18 23:31:36,811 INFO    MainThread:11356 [wandb_init.py:init():625] starting run threads in backend
+2022-03-18 23:31:38,358 INFO    MainThread:11356 [wandb_run.py:_console_start():1733] atexit reg
+2022-03-18 23:31:38,359 INFO    MainThread:11356 [wandb_run.py:_redirect():1606] redirect: SettingsConsole.REDIRECT
+2022-03-18 23:31:38,359 INFO    MainThread:11356 [wandb_run.py:_redirect():1611] Redirecting console.
+2022-03-18 23:31:38,362 INFO    MainThread:11356 [wandb_run.py:_redirect():1667] Redirects installed.
+2022-03-18 23:31:38,362 INFO    MainThread:11356 [wandb_init.py:init():664] run started, returning control to user process
+2022-03-18 23:31:40,570 INFO    MainThread:11356 [wandb_watch.py:watch():47] Watching

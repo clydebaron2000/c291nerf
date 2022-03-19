@@ -1,0 +1,11 @@
+Not ndc!
+get rays
+done, concats
+shuffle rays
+Traceback (most recent call last):
+  File "main.py", line 780, in <module>
+    train(args)
+  File "main.py", line 553, in train
+    rays_rgb = torch.Tensor(rays_rgb).to(device)
+RuntimeError: CUDA out of memory. Tried to allocate 2.15 GiB (GPU 2; 23.70 GiB total capacity; 2.87 GiB already allocated; 422.69 MiB free; 2.87 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+done

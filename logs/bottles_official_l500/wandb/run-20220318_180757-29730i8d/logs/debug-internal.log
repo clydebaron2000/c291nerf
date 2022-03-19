@@ -1,0 +1,71 @@
+2022-03-18 18:07:58,277 INFO    MainThread:3139 [internal.py:wandb_internal():92] W&B internal server running at pid: 3139, started at: 2022-03-18 18:07:58.277013
+2022-03-18 18:07:58,279 INFO    WriterThread:3139 [datastore.py:open_for_write():77] open: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/run-29730i8d.wandb
+2022-03-18 18:07:58,280 DEBUG   SenderThread:3139 [sender.py:send():235] send: header
+2022-03-18 18:07:58,280 DEBUG   SenderThread:3139 [sender.py:send():235] send: run
+2022-03-18 18:07:58,475 INFO    SenderThread:3139 [dir_watcher.py:__init__():169] watching files in: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files
+2022-03-18 18:07:58,475 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: check_version
+2022-03-18 18:07:58,475 INFO    SenderThread:3139 [sender.py:_start_run_threads():812] run started: 29730i8d with start time 1647626877
+2022-03-18 18:07:58,475 DEBUG   SenderThread:3139 [sender.py:send():235] send: summary
+2022-03-18 18:07:58,475 INFO    SenderThread:3139 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 18:07:58,476 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: check_version
+2022-03-18 18:07:58,499 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: run_start
+2022-03-18 18:07:59,478 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/wandb-summary.json
+2022-03-18 18:07:59,577 DEBUG   HandlerThread:3139 [meta.py:__init__():37] meta init
+2022-03-18 18:07:59,577 DEBUG   HandlerThread:3139 [meta.py:__init__():51] meta init done
+2022-03-18 18:07:59,577 DEBUG   HandlerThread:3139 [meta.py:probe():211] probe
+2022-03-18 18:07:59,583 DEBUG   HandlerThread:3139 [meta.py:_setup_git():201] setup git
+2022-03-18 18:07:59,598 DEBUG   HandlerThread:3139 [meta.py:_setup_git():208] setup git done
+2022-03-18 18:07:59,598 DEBUG   HandlerThread:3139 [meta.py:_save_pip():55] save pip
+2022-03-18 18:07:59,599 DEBUG   HandlerThread:3139 [meta.py:_save_pip():69] save pip done
+2022-03-18 18:07:59,599 DEBUG   HandlerThread:3139 [meta.py:_save_conda():76] save conda
+2022-03-18 18:08:00,020 DEBUG   HandlerThread:3139 [meta.py:_save_conda():86] save conda done
+2022-03-18 18:08:00,020 DEBUG   HandlerThread:3139 [meta.py:probe():249] probe done
+2022-03-18 18:08:00,022 DEBUG   SenderThread:3139 [sender.py:send():235] send: files
+2022-03-18 18:08:00,023 INFO    SenderThread:3139 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-18 18:08:00,028 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:08:00,029 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:08:00,176 DEBUG   SenderThread:3139 [sender.py:send():235] send: telemetry
+2022-03-18 18:08:00,478 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/requirements.txt
+2022-03-18 18:08:00,479 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/output.log
+2022-03-18 18:08:00,479 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/conda-environment.yaml
+2022-03-18 18:08:00,479 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/wandb-metadata.json
+2022-03-18 18:08:00,559 INFO    Thread-11 :3139 [upload_job.py:push():137] Uploaded file /tmp/tmp6u21lqxcwandb/2xrql4md-wandb-metadata.json
+2022-03-18 18:08:02,284 DEBUG   SenderThread:3139 [sender.py:send():235] send: telemetry
+2022-03-18 18:08:04,479 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/output.log
+2022-03-18 18:08:15,177 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:08:15,177 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:08:27,815 DEBUG   SenderThread:3139 [sender.py:send():235] send: stats
+2022-03-18 18:08:29,488 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/config.yaml
+2022-03-18 18:08:30,332 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:08:30,332 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:08:36,491 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/output.log
+2022-03-18 18:08:42,493 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/output.log
+2022-03-18 18:08:45,826 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:08:45,826 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:08:58,146 DEBUG   SenderThread:3139 [sender.py:send():235] send: stats
+2022-03-18 18:09:00,971 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:09:00,972 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:09:16,121 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:09:16,121 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:09:28,382 DEBUG   SenderThread:3139 [sender.py:send():235] send: stats
+2022-03-18 18:09:31,269 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:09:31,269 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:09:42,513 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/output.log
+2022-03-18 18:09:46,413 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:09:46,414 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:09:58,620 DEBUG   SenderThread:3139 [sender.py:send():235] send: stats
+2022-03-18 18:10:01,562 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:10:01,562 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:10:07,781 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 18:10:07,782 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 18:10:07,782 DEBUG   SenderThread:3139 [sender.py:send():235] send: history
+2022-03-18 18:10:07,783 DEBUG   SenderThread:3139 [sender.py:send():235] send: summary
+2022-03-18 18:10:07,783 INFO    SenderThread:3139 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 18:10:07,783 DEBUG   SenderThread:3139 [sender.py:send():235] send: history
+2022-03-18 18:10:07,783 DEBUG   SenderThread:3139 [sender.py:send():235] send: summary
+2022-03-18 18:10:07,784 INFO    SenderThread:3139 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 18:10:08,523 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/wandb-summary.json
+2022-03-18 18:10:10,524 INFO    Thread-7  :3139 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_l500/wandb/run-20220318_180757-29730i8d/files/output.log
+2022-03-18 18:10:16,707 DEBUG   HandlerThread:3139 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 18:10:16,707 DEBUG   SenderThread:3139 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 18:10:28,855 DEBUG   SenderThread:3139 [sender.py:send():235] send: stats

@@ -187,6 +187,7 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs,
             # p = -10. * np.log10(np.mean(np.square(rgb.cpu().numpy() - gt_imgs[i])))
             val_psnr = mse2psnr(val_loss)
             output = f'[{img_prefix}] Iter: {img_suffix} Loss: {val_loss:.3f} {img_prefix} PSNR: {val_psnr:.3f}'
+
             print(output)
             wandb.log({
                 f'{img_prefix} Iter': img_suffix,

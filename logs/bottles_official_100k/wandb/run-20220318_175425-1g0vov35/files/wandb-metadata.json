@@ -1,0 +1,30 @@
+{
+    "os": "Linux-4.15.0-169-generic-x86_64-with-glibc2.17",
+    "python": "3.8.12",
+    "heartbeatAt": "2022-03-18T17:54:27.046076",
+    "startedAt": "2022-03-18T17:54:25.068297",
+    "docker": null,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 4,
+    "cpu_count": 48,
+    "cuda": null,
+    "args": [
+        "--config",
+        "./configs/bottles_official.txt",
+        "--gpu=0",
+        "--n_iters=100000",
+        "--expname=bottles_official_100k"
+    ],
+    "state": "running",
+    "program": "main.py",
+    "codePath": "main.py",
+    "git": {
+        "remote": "https://github.com/clydebaron2000/c291nerf.git",
+        "commit": "870119e85a485938f6d7a0db57cc8702cdf2be08"
+    },
+    "email": null,
+    "root": "/workspace/c291nerf",
+    "host": "dc2f1fe41e7a",
+    "username": "root",
+    "executable": "/opt/conda/bin/python"
+}
