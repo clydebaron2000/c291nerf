@@ -1,1 +1,1 @@
-python main.py --config ./configs/bottles_official.txt --gpu=3 --n_iters=100000 --i_embed=-1 --expname=bottles_official_no_embed
+python main.py --config ./configs/bottles_official.txt --gpu=3 --n_iters=100000 --i_embed=-1 --expname=bottles_official_no_embed 
