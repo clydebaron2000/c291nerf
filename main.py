@@ -183,15 +183,16 @@ def render_path(render_poses, hwf, K, chunk, render_kwargs,
             if isinstance(gt_imgs,torch.Tensor):
                 gt_imgs = gt_imgs.cpu()
             gts = np.stack(gt_imgs,0)
-            loss = img2mse(rgb.cpu(), gts)
+            val_loss = img2mse(rgbs.cpu(), gts)
             # p = -10. * np.log10(np.mean(np.square(rgb.cpu().numpy() - gt_imgs[i])))
-            psnr = mse2psnr(loss)
-            output = f'[{img_prefix}] Iter: {img_suffix} Loss: {loss.item():.3f} {img_prefix} PSNR: {psnr:.3f}'
+            val_psnr = mse2psnr(val_loss)
+            output = f'[{img_prefix}] Iter: {img_suffix} Loss: {val_loss:.3f} {img_prefix} PSNR: {val_psnr:.3f}'
+
             print(output)
             wandb.log({
                 f'{img_prefix} Iter': img_suffix,
-                f'{img_prefix} Loss': loss,
-                f'{img_prefix} PSNR': psnr
+                f'{img_prefix} Loss': val_loss,
+                f'{img_prefix} PSNR': val_psnr
             })
 
     return rgbs, disps
@@ -410,7 +411,7 @@ def render_rays(ray_batch,
 
 #     raw = run_network(pts)
     raw = network_query_fn(pts, viewdirs, network_fn)
-    rgb_map, disp_map, acc_map, weights, _ = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
+    rgb_map, disp_map, acc_map, weights, depth_map = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
 
     if N_importance > 0:
 
@@ -427,7 +428,7 @@ def render_rays(ray_batch,
 #         raw = run_network(pts, fn=run_fn)
         raw = network_query_fn(pts, viewdirs, run_fn)
 
-        rgb_map, disp_map, acc_map, weights, _ = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
+        rgb_map, disp_map, acc_map, weights, depth_map = raw2outputs(raw, z_vals, rays_d, raw_noise_std, white_bkgd, pytest=pytest)
 
     ret = {'rgb_map' : rgb_map, 'disp_map' : disp_map, 'acc_map' : acc_map}
     if ret_raw:
@@ -544,14 +545,17 @@ def train(args):
 
         print('done')
         i_batch = 0
-
-    # Move training data to GPU
-    if use_batching:
+        
+        # Move training data to GPU
         images = torch.Tensor(images).to(device)
-    poses = torch.Tensor(poses).to(device)
-    if use_batching:
         rays_rgb = torch.Tensor(rays_rgb).to(device)
 
+
+    poses = torch.Tensor(poses).to(device)
+
+    if args.i_val_eval > 0:
+        val_imgs = images[i_val[:args.i_val_eval]]
+        val_poses = poses[i_val[:args.i_val_eval]]
 
     N_iters = args.n_iters + 1
     print('Begin')
@@ -624,16 +628,15 @@ def train(args):
         nerf_optimizer.zero_grad()
         img_loss = img2mse(rgb, target_s)
         trans = extras['raw'][...,-1]
-        loss = img_loss
-        # TODO calc validation psnr not training psnr
-        psnr = mse2psnr(img_loss)
+        train_loss = img_loss
+        train_psnr = mse2psnr(img_loss)
         
         if 'rgb0' in extras:
             img_loss0 = img2mse(extras['rgb0'], target_s)
-            loss = loss + img_loss0
+            train_loss = train_loss + img_loss0
             psnr0 = mse2psnr(img_loss0)
 
-        loss.backward()
+        train_loss.backward()
         nerf_optimizer.step()
 
         # NOTE: IMPORTANT!
@@ -671,12 +674,12 @@ def train(args):
             print('Done, saving', rgbs.shape, disps.shape)
             moviebase = path_join(basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
             imageio.mimwrite(moviebase + 'rgb.mp4', to8b(rgbs), fps=30, quality=8)
-            imageio.mimwrite(moviebase + 'disp.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
+            imageio.mimwrite(moviebase + 'depth.mp4', to8b(disps / np.max(disps)), fps=30, quality=8)
             wandb.log({
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.gif': wandb.Image(moviebase + 'rgb.mp4', fps=10, format='gif'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Image(moviebase + 'disp.mp4', fps=10, format='gif'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.mp4': wandb.Video(moviebase + 'rgb.mp4'),
-                '{}_spiral_{:06d}_'.format(expname, i)+'disp.mp4': wandb.Video(moviebase + 'disp.mp4'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'depth.mp4': wandb.Video(moviebase + 'disp.mp4'),
             })
             if args.use_viewdirs:
                 render_kwargs_test['c2w_staticcam'] = render_poses[30][:3,:4]
@@ -699,29 +702,30 @@ def train(args):
             # TODO: CHANGE
             # print('test poses shape', poses[[30]].shape)
             with torch.no_grad():
-                render_path(torch.Tensor(poses[inds]).to(device), hwf, K, args.chunk, render_kwargs_test,
+                pose_filter = torch.Tensor(poses[inds]).to(device)
+                render_path(pose_filter, hwf, K, args.chunk, render_kwargs_test,
                                 # gt_imgs=images[i_test], 
                                 savedir=testsavedir)
+                pose_filter = pose_filter.cpu()
+                del pose_filter
             print('Saved test set')
     
         if i%args.i_val_eval==0 and i > 0:
-            inds = i_val[:args.i_val_set]
-            val_set = images[inds]
             with torch.no_grad():
-                rgbs, disps = render_path(poses[inds], hwf, K, args.chunk, render_kwargs_train,
-                                            gt_imgs=val_set,
+                rgbs, disps = render_path(val_poses, hwf, K, args.chunk, render_kwargs_train,
+                                            gt_imgs=val_imgs,
                                             img_prefix=f'VAL',
                                             img_suffix=i
                                             )
 
         if i%args.i_print==0:
             # validation evaluation
-            outstring =f"[TRAIN] Iter: {i} Loss: {loss.item()} PSNR: {psnr.item()}" 
+            outstring =f"[TRAIN] Iter: {i} Loss: {train_loss.item()} PSNR: {train_psnr.item()}" 
             tqdm.write(outstring)
             wandb.log({
                 "TRAIN Iter": i,
-                "TRAIN Loss": loss.item(),
-                "TRAIN PSNR": psnr.item(),
+                "TRAIN Loss": train_loss.item(),
+                "TRAIN PSNR": train_psnr.item(),
             })
             
             # print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
