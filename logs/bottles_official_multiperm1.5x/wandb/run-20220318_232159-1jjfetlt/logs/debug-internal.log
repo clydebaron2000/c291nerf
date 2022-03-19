@@ -1,0 +1,643 @@
+2022-03-18 23:22:00,488 INFO    MainThread:7934 [internal.py:wandb_internal():92] W&B internal server running at pid: 7934, started at: 2022-03-18 23:22:00.488155
+2022-03-18 23:22:00,490 INFO    WriterThread:7934 [datastore.py:open_for_write():77] open: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/run-1jjfetlt.wandb
+2022-03-18 23:22:00,491 DEBUG   SenderThread:7934 [sender.py:send():235] send: header
+2022-03-18 23:22:00,491 DEBUG   SenderThread:7934 [sender.py:send():235] send: run
+2022-03-18 23:22:00,684 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: check_version
+2022-03-18 23:22:00,685 INFO    SenderThread:7934 [dir_watcher.py:__init__():169] watching files in: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files
+2022-03-18 23:22:00,685 INFO    SenderThread:7934 [sender.py:_start_run_threads():812] run started: 1jjfetlt with start time 1647645719
+2022-03-18 23:22:00,685 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:22:00,685 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:22:00,685 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: check_version
+2022-03-18 23:22:00,711 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: run_start
+2022-03-18 23:22:01,687 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:22:01,793 DEBUG   HandlerThread:7934 [meta.py:__init__():37] meta init
+2022-03-18 23:22:01,793 DEBUG   HandlerThread:7934 [meta.py:__init__():51] meta init done
+2022-03-18 23:22:01,793 DEBUG   HandlerThread:7934 [meta.py:probe():211] probe
+2022-03-18 23:22:01,799 DEBUG   HandlerThread:7934 [meta.py:_setup_git():201] setup git
+2022-03-18 23:22:01,816 DEBUG   HandlerThread:7934 [meta.py:_setup_git():208] setup git done
+2022-03-18 23:22:01,816 DEBUG   HandlerThread:7934 [meta.py:_save_pip():55] save pip
+2022-03-18 23:22:01,816 DEBUG   HandlerThread:7934 [meta.py:_save_pip():69] save pip done
+2022-03-18 23:22:01,816 DEBUG   HandlerThread:7934 [meta.py:_save_conda():76] save conda
+2022-03-18 23:22:02,242 DEBUG   HandlerThread:7934 [meta.py:_save_conda():86] save conda done
+2022-03-18 23:22:02,242 DEBUG   HandlerThread:7934 [meta.py:probe():249] probe done
+2022-03-18 23:22:02,245 DEBUG   SenderThread:7934 [sender.py:send():235] send: files
+2022-03-18 23:22:02,246 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-18 23:22:02,251 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:22:02,251 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:22:02,429 DEBUG   SenderThread:7934 [sender.py:send():235] send: telemetry
+2022-03-18 23:22:02,687 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/requirements.txt
+2022-03-18 23:22:02,688 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-metadata.json
+2022-03-18 23:22:02,688 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/conda-environment.yaml
+2022-03-18 23:22:02,688 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:22:02,788 INFO    Thread-11 :7934 [upload_job.py:push():137] Uploaded file /tmp/tmpzm1f_5kpwandb/2bdsnl1w-wandb-metadata.json
+2022-03-18 23:22:04,551 DEBUG   SenderThread:7934 [sender.py:send():235] send: telemetry
+2022-03-18 23:22:06,689 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:22:17,430 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:22:17,431 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:22:30,079 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:22:31,698 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/config.yaml
+2022-03-18 23:22:32,576 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:22:32,576 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:22:38,701 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:22:44,704 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:22:47,721 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:22:47,721 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:23:00,336 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:23:02,866 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:23:02,867 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:23:18,014 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:23:18,015 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:23:30,579 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:23:33,179 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:23:33,180 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:23:42,724 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:23:48,337 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:23:48,337 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:24:00,843 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:24:03,484 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:24:03,484 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:24:09,416 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:09,417 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:09,417 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:24:09,419 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:24:09,419 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:24:09,419 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:24:09,419 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:24:09,420 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:24:09,734 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:24:10,734 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:24:18,635 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:24:18,635 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:24:31,126 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:24:33,780 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:24:33,780 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:24:36,653 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:36,654 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:36,655 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:24:36,655 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:24:36,656 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:24:36,656 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:24:36,656 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:24:36,656 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:24:36,743 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:24:38,743 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:24:48,926 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:24:48,926 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:24:50,060 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,060 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,061 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,067 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,076 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,076 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,077 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,078 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,087 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,098 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,098 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,098 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,098 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,099 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,099 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,099 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,099 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,100 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,100 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,107 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,108 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,109 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,109 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:24:50,110 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:01,372 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:25:04,024 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:04,030 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:04,032 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:25:04,035 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:25:04,037 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:25:04,038 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:25:04,038 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:25:04,040 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:25:04,075 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:25:04,075 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:25:04,752 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:25:06,753 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:25:19,226 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:25:19,226 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:25:31,438 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:31,440 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:31,442 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:25:31,442 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:25:31,446 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:25:31,446 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:25:31,446 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:25:31,448 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:25:31,607 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:25:31,761 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:25:32,761 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:25:34,372 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:25:34,372 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:25:49,526 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:25:49,526 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:25:58,648 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,685 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,736 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,737 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,738 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,739 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,740 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,740 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,741 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,742 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,743 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,744 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,745 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,745 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,747 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,747 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,748 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,749 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,750 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,750 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,751 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,751 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,755 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:58,756 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:59,003 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:59,007 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:25:59,007 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:25:59,013 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:25:59,016 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:25:59,017 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:25:59,017 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:25:59,019 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:25:59,771 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:26:00,771 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:26:01,883 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:26:04,671 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:26:04,671 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:26:19,826 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:26:19,827 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:26:26,475 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:26:26,477 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:26:26,478 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:26:26,480 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:26:26,483 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:26:26,483 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:26:26,483 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:26:26,486 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:26:26,780 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:26:28,781 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:26:32,144 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:26:34,970 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:26:34,971 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:26:50,119 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:26:50,119 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:26:53,950 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:26:53,952 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:26:53,953 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:26:53,956 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:26:53,958 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:26:53,958 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:26:53,958 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:26:53,961 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:26:54,790 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:26:54,790 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:27:02,372 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:27:05,264 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:27:05,264 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:27:07,455 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,467 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,643 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,647 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,648 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,649 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,650 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,651 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,663 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,664 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,665 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,666 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,667 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,687 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,688 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,688 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,690 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,690 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,699 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,700 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,700 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,701 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,702 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:07,702 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:20,422 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:27:20,422 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:27:21,678 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:21,685 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:21,685 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:27:21,689 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:27:21,691 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:27:21,691 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:27:21,692 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:27:21,694 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:27:21,799 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:27:22,799 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:27:32,607 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:27:35,567 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:27:35,567 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:27:49,125 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:49,128 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:27:49,128 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:27:49,130 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:27:49,132 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:27:49,133 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:27:49,133 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:27:49,135 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:27:49,808 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:27:50,808 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:27:50,847 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:27:50,847 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:28:02,851 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:28:05,992 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:28:05,992 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:28:16,455 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,458 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,459 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,461 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,464 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,465 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,466 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,467 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,468 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,469 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,470 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,471 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,472 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,483 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,484 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,484 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,484 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,484 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,484 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,485 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,485 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,485 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,485 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,485 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,718 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,718 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,720 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,720 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,722 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,722 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,723 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,724 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,725 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,726 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,727 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,728 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,729 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,730 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,732 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,732 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,734 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,735 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,736 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,737 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,739 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,739 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,740 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:16,741 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:18,818 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:28:21,137 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:28:21,137 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:28:33,115 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:28:36,284 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:28:36,284 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:28:36,825 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:28:45,744 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,753 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,761 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,762 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,763 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,778 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,780 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,780 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,781 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,782 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,783 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,784 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,785 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,785 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,787 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,787 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,788 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,789 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,790 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,791 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,791 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,792 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,792 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:45,793 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:28:51,441 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:28:51,441 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:28:54,830 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:29:03,360 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:29:06,586 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:29:06,587 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:29:12,836 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:29:14,849 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,864 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,961 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,961 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,963 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,963 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,964 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,965 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,966 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,967 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,968 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,969 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,970 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,970 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,971 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,972 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,973 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,973 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,975 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,975 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,990 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,991 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,991 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:14,992 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:21,732 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:29:21,733 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:29:30,842 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:29:33,621 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:29:36,877 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:29:36,877 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:29:44,395 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,406 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,459 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,460 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,461 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,462 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,463 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,471 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,472 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,473 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,474 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,475 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,476 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,476 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,478 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,478 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,479 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,480 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,481 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,481 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,482 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,482 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,483 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:44,483 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:29:50,848 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:29:52,026 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:29:52,026 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:30:03,859 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:30:07,178 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:30:07,178 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:30:08,854 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:30:13,519 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,520 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,521 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,522 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,523 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,524 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,525 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,526 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,527 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,527 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,529 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,529 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,530 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,531 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,532 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,533 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,534 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,534 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,540 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,540 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,541 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,541 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,542 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:13,542 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:22,334 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:30:22,335 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:30:26,860 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:30:34,117 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:30:37,500 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:30:37,500 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:30:42,904 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,904 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,905 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,906 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,907 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,907 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,909 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,909 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,910 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,911 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,912 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,912 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,914 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,914 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,930 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,930 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,931 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,932 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,933 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,934 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,934 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,934 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,935 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:42,935 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:30:44,866 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:30:52,646 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:30:52,647 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:31:02,873 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:31:04,414 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:31:07,791 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:31:07,792 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:31:11,992 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,992 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,993 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,994 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,995 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,996 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,997 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,997 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,999 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:11,999 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,001 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,001 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,003 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,003 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,019 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,020 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,021 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,021 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,022 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,023 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,024 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,025 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,025 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:12,026 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:19,836 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:31:19,836 DEBUG   SenderThread:7934 [sender.py:send():235] send: telemetry
+2022-03-18 23:31:19,845 DEBUG   SenderThread:7934 [sender.py:send():235] send: history
+2022-03-18 23:31:19,850 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:31:19,854 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:31:19,880 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:31:20,880 INFO    Thread-7  :7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:31:21,893 DEBUG   SenderThread:7934 [sender.py:send():235] send: exit
+2022-03-18 23:31:21,894 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:21,894 INFO    SenderThread:7934 [sender.py:send_exit():371] handling exit code: 1
+2022-03-18 23:31:21,894 INFO    SenderThread:7934 [sender.py:send_exit():373] handling runtime: 561
+2022-03-18 23:31:21,897 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:31:21,898 INFO    SenderThread:7934 [sender.py:send_exit():379] send defer
+2022-03-18 23:31:21,898 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:21,899 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:21,899 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 0
+2022-03-18 23:31:21,899 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:21,899 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 0
+2022-03-18 23:31:21,899 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 1
+2022-03-18 23:31:21,899 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:21,899 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 1
+2022-03-18 23:31:21,944 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:21,945 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 1
+2022-03-18 23:31:21,945 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 2
+2022-03-18 23:31:21,945 DEBUG   SenderThread:7934 [sender.py:send():235] send: stats
+2022-03-18 23:31:21,946 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:21,946 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 2
+2022-03-18 23:31:21,946 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:21,946 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 2
+2022-03-18 23:31:21,946 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 3
+2022-03-18 23:31:21,946 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:21,946 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 3
+2022-03-18 23:31:21,946 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:21,946 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 3
+2022-03-18 23:31:21,946 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 4
+2022-03-18 23:31:21,946 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:21,946 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 4
+2022-03-18 23:31:21,949 DEBUG   SenderThread:7934 [sender.py:send():235] send: summary
+2022-03-18 23:31:21,955 INFO    SenderThread:7934 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:31:21,955 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:21,955 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 4
+2022-03-18 23:31:21,955 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 5
+2022-03-18 23:31:21,956 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:21,956 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 5
+2022-03-18 23:31:21,956 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:21,956 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 5
+2022-03-18 23:31:22,000 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:22,140 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 6
+2022-03-18 23:31:22,140 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:22,141 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:22,141 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 6
+2022-03-18 23:31:22,141 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:22,141 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 6
+2022-03-18 23:31:22,141 INFO    SenderThread:7934 [dir_watcher.py:finish():283] shutting down directory watcher
+2022-03-18 23:31:22,242 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:22,881 INFO    SenderThread:7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:31:22,881 INFO    SenderThread:7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:31:22,882 INFO    SenderThread:7934 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/config.yaml
+2022-03-18 23:31:22,882 INFO    SenderThread:7934 [dir_watcher.py:finish():313] scan: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files
+2022-03-18 23:31:22,882 INFO    SenderThread:7934 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/config.yaml config.yaml
+2022-03-18 23:31:22,882 INFO    SenderThread:7934 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json wandb-summary.json
+2022-03-18 23:31:22,882 INFO    SenderThread:7934 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/requirements.txt requirements.txt
+2022-03-18 23:31:22,882 INFO    SenderThread:7934 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/conda-environment.yaml conda-environment.yaml
+2022-03-18 23:31:22,883 INFO    SenderThread:7934 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-metadata.json wandb-metadata.json
+2022-03-18 23:31:22,883 INFO    SenderThread:7934 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log output.log
+2022-03-18 23:31:22,883 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 7
+2022-03-18 23:31:22,883 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:22,887 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:22,890 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 7
+2022-03-18 23:31:22,893 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:22,893 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 7
+2022-03-18 23:31:22,893 INFO    SenderThread:7934 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-18 23:31:22,985 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:22,985 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,087 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,087 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,188 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,188 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,290 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,290 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,391 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,392 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,407 INFO    Thread-15 :7934 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/output.log
+2022-03-18 23:31:23,416 INFO    Thread-12 :7934 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/config.yaml
+2022-03-18 23:31:23,441 INFO    Thread-14 :7934 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/requirements.txt
+2022-03-18 23:31:23,493 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,493 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,594 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,595 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,696 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,696 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,798 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,798 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:23,900 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:23,900 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,001 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,001 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,103 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,103 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,204 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,204 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,306 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,306 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,407 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,407 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,508 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,508 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,610 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,610 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,711 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,711 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,812 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,812 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,914 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:24,914 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:24,921 INFO    Thread-13 :7934 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/files/wandb-summary.json
+2022-03-18 23:31:25,015 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:25,015 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:25,116 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:25,116 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:25,121 INFO    Thread-6  :7934 [sender.py:transition_state():392] send defer: 8
+2022-03-18 23:31:25,122 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:25,122 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 8
+2022-03-18 23:31:25,122 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:25,122 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 8
+2022-03-18 23:31:25,217 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:26,087 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 9
+2022-03-18 23:31:26,088 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:26,088 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:26,088 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 9
+2022-03-18 23:31:26,089 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:26,089 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 9
+2022-03-18 23:31:26,089 INFO    SenderThread:7934 [sender.py:transition_state():392] send defer: 10
+2022-03-18 23:31:26,089 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:31:26,089 INFO    HandlerThread:7934 [handler.py:handle_request_defer():164] handle defer: 10
+2022-03-18 23:31:26,089 DEBUG   SenderThread:7934 [sender.py:send():235] send: final
+2022-03-18 23:31:26,090 DEBUG   SenderThread:7934 [sender.py:send():235] send: footer
+2022-03-18 23:31:26,090 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:31:26,090 INFO    SenderThread:7934 [sender.py:send_request_defer():388] handle sender defer: 10
+2022-03-18 23:31:26,189 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:31:26,189 DEBUG   SenderThread:7934 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:31:26,190 INFO    SenderThread:7934 [file_pusher.py:join():150] waiting for file pusher
+2022-03-18 23:31:26,606 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: sampled_history
+2022-03-18 23:31:26,608 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: get_summary
+2022-03-18 23:31:26,611 DEBUG   HandlerThread:7934 [handler.py:handle_request():141] handle_request: shutdown
+2022-03-18 23:31:26,611 INFO    HandlerThread:7934 [handler.py:finish():778] shutting down handler
+2022-03-18 23:31:27,090 INFO    WriterThread:7934 [datastore.py:close():281] close: ./logs/bottles_official_multiperm1.5x/wandb/run-20220318_232159-1jjfetlt/run-1jjfetlt.wandb
+2022-03-18 23:31:27,505 INFO    SenderThread:7934 [sender.py:finish():1078] shutting down sender
+2022-03-18 23:31:27,505 INFO    SenderThread:7934 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-18 23:31:27,505 INFO    SenderThread:7934 [file_pusher.py:join():150] waiting for file pusher
+2022-03-18 23:31:27,507 INFO    MainThread:7934 [internal.py:handle_exit():82] Internal process exited

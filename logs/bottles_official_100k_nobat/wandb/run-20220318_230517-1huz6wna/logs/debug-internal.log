@@ -1,0 +1,150 @@
+2022-03-18 23:05:18,190 INFO    MainThread:2215 [internal.py:wandb_internal():92] W&B internal server running at pid: 2215, started at: 2022-03-18 23:05:18.189922
+2022-03-18 23:05:18,192 INFO    WriterThread:2215 [datastore.py:open_for_write():77] open: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/run-1huz6wna.wandb
+2022-03-18 23:05:18,194 DEBUG   SenderThread:2215 [sender.py:send():235] send: header
+2022-03-18 23:05:18,194 DEBUG   SenderThread:2215 [sender.py:send():235] send: run
+2022-03-18 23:05:18,376 INFO    SenderThread:2215 [dir_watcher.py:__init__():169] watching files in: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files
+2022-03-18 23:05:18,377 INFO    SenderThread:2215 [sender.py:_start_run_threads():812] run started: 1huz6wna with start time 1647644717
+2022-03-18 23:05:18,377 DEBUG   SenderThread:2215 [sender.py:send():235] send: summary
+2022-03-18 23:05:18,377 INFO    SenderThread:2215 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:05:18,377 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: check_version
+2022-03-18 23:05:18,377 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: check_version
+2022-03-18 23:05:18,401 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: run_start
+2022-03-18 23:05:19,379 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/wandb-summary.json
+2022-03-18 23:05:19,506 DEBUG   HandlerThread:2215 [meta.py:__init__():37] meta init
+2022-03-18 23:05:19,506 DEBUG   HandlerThread:2215 [meta.py:__init__():51] meta init done
+2022-03-18 23:05:19,506 DEBUG   HandlerThread:2215 [meta.py:probe():211] probe
+2022-03-18 23:05:19,513 DEBUG   HandlerThread:2215 [meta.py:_setup_git():201] setup git
+2022-03-18 23:05:19,529 DEBUG   HandlerThread:2215 [meta.py:_setup_git():208] setup git done
+2022-03-18 23:05:19,529 DEBUG   HandlerThread:2215 [meta.py:_save_pip():55] save pip
+2022-03-18 23:05:19,529 DEBUG   HandlerThread:2215 [meta.py:_save_pip():69] save pip done
+2022-03-18 23:05:19,529 DEBUG   HandlerThread:2215 [meta.py:_save_conda():76] save conda
+2022-03-18 23:05:19,950 DEBUG   HandlerThread:2215 [meta.py:_save_conda():86] save conda done
+2022-03-18 23:05:19,950 DEBUG   HandlerThread:2215 [meta.py:probe():249] probe done
+2022-03-18 23:05:19,952 DEBUG   SenderThread:2215 [sender.py:send():235] send: files
+2022-03-18 23:05:19,952 INFO    SenderThread:2215 [sender.py:_save_file():947] saving file wandb-metadata.json with policy now
+2022-03-18 23:05:19,959 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: stop_status
+2022-03-18 23:05:19,959 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: stop_status
+2022-03-18 23:05:20,108 DEBUG   SenderThread:2215 [sender.py:send():235] send: telemetry
+2022-03-18 23:05:20,379 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/output.log
+2022-03-18 23:05:20,379 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/requirements.txt
+2022-03-18 23:05:20,380 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/wandb-metadata.json
+2022-03-18 23:05:20,380 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_created():217] file/dir created: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/conda-environment.yaml
+2022-03-18 23:05:20,491 INFO    Thread-11 :2215 [upload_job.py:push():137] Uploaded file /tmp/tmpwyv1wl14wandb/1anwic45-wandb-metadata.json
+2022-03-18 23:05:22,166 DEBUG   SenderThread:2215 [sender.py:send():235] send: telemetry
+2022-03-18 23:05:22,946 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: partial_history
+2022-03-18 23:05:22,947 DEBUG   SenderThread:2215 [sender.py:send():235] send: telemetry
+2022-03-18 23:05:24,380 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/output.log
+2022-03-18 23:05:24,975 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:24,975 DEBUG   SenderThread:2215 [sender.py:send():235] send: exit
+2022-03-18 23:05:24,976 INFO    SenderThread:2215 [sender.py:send_exit():371] handling exit code: 1
+2022-03-18 23:05:24,976 INFO    SenderThread:2215 [sender.py:send_exit():373] handling runtime: 6
+2022-03-18 23:05:24,976 INFO    SenderThread:2215 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:05:24,977 INFO    SenderThread:2215 [sender.py:send_exit():379] send defer
+2022-03-18 23:05:24,977 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:24,977 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:24,977 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 0
+2022-03-18 23:05:24,977 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:24,977 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 0
+2022-03-18 23:05:24,977 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 1
+2022-03-18 23:05:24,978 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:24,978 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 1
+2022-03-18 23:05:25,016 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,016 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 1
+2022-03-18 23:05:25,016 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 2
+2022-03-18 23:05:25,016 DEBUG   SenderThread:2215 [sender.py:send():235] send: stats
+2022-03-18 23:05:25,017 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:25,017 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 2
+2022-03-18 23:05:25,017 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,017 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 2
+2022-03-18 23:05:25,017 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 3
+2022-03-18 23:05:25,017 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:25,017 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 3
+2022-03-18 23:05:25,017 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,018 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 3
+2022-03-18 23:05:25,018 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 4
+2022-03-18 23:05:25,018 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:25,018 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 4
+2022-03-18 23:05:25,018 DEBUG   SenderThread:2215 [sender.py:send():235] send: summary
+2022-03-18 23:05:25,018 INFO    SenderThread:2215 [sender.py:_save_file():947] saving file wandb-summary.json with policy end
+2022-03-18 23:05:25,018 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,018 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 4
+2022-03-18 23:05:25,018 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 5
+2022-03-18 23:05:25,019 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:25,019 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 5
+2022-03-18 23:05:25,019 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,019 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 5
+2022-03-18 23:05:25,078 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,198 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 6
+2022-03-18 23:05:25,198 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,199 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:25,199 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 6
+2022-03-18 23:05:25,199 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,199 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 6
+2022-03-18 23:05:25,199 INFO    SenderThread:2215 [dir_watcher.py:finish():283] shutting down directory watcher
+2022-03-18 23:05:25,300 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,380 INFO    Thread-7  :2215 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/output.log
+2022-03-18 23:05:25,381 INFO    SenderThread:2215 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/config.yaml
+2022-03-18 23:05:25,381 INFO    SenderThread:2215 [dir_watcher.py:_on_file_modified():230] file/dir modified: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/wandb-summary.json
+2022-03-18 23:05:25,381 INFO    SenderThread:2215 [dir_watcher.py:finish():313] scan: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files
+2022-03-18 23:05:25,381 INFO    SenderThread:2215 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/config.yaml config.yaml
+2022-03-18 23:05:25,382 INFO    SenderThread:2215 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/wandb-summary.json wandb-summary.json
+2022-03-18 23:05:25,382 INFO    SenderThread:2215 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/requirements.txt requirements.txt
+2022-03-18 23:05:25,382 INFO    SenderThread:2215 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/conda-environment.yaml conda-environment.yaml
+2022-03-18 23:05:25,385 INFO    SenderThread:2215 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/wandb-metadata.json wandb-metadata.json
+2022-03-18 23:05:25,385 INFO    SenderThread:2215 [dir_watcher.py:finish():327] scan save: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/output.log output.log
+2022-03-18 23:05:25,385 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 7
+2022-03-18 23:05:25,385 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,393 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:25,395 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 7
+2022-03-18 23:05:25,396 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:25,396 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 7
+2022-03-18 23:05:25,396 INFO    SenderThread:2215 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-18 23:05:25,494 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,494 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,595 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,595 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,697 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,697 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,798 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,799 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,900 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:25,900 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:25,905 INFO    Thread-12 :2215 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/config.yaml
+2022-03-18 23:05:25,913 INFO    Thread-13 :2215 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/wandb-summary.json
+2022-03-18 23:05:25,929 INFO    Thread-14 :2215 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/requirements.txt
+2022-03-18 23:05:25,997 INFO    Thread-15 :2215 [upload_job.py:push():137] Uploaded file ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/files/output.log
+2022-03-18 23:05:26,001 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:26,001 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:26,103 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:26,103 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:26,197 INFO    Thread-6  :2215 [sender.py:transition_state():392] send defer: 8
+2022-03-18 23:05:26,198 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:26,198 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 8
+2022-03-18 23:05:26,198 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:26,198 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 8
+2022-03-18 23:05:26,204 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:26,445 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 9
+2022-03-18 23:05:26,446 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:26,446 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:26,446 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 9
+2022-03-18 23:05:26,446 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:26,446 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 9
+2022-03-18 23:05:26,446 INFO    SenderThread:2215 [sender.py:transition_state():392] send defer: 10
+2022-03-18 23:05:26,447 DEBUG   SenderThread:2215 [sender.py:send():235] send: final
+2022-03-18 23:05:26,447 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: defer
+2022-03-18 23:05:26,447 INFO    HandlerThread:2215 [handler.py:handle_request_defer():164] handle defer: 10
+2022-03-18 23:05:26,448 DEBUG   SenderThread:2215 [sender.py:send():235] send: footer
+2022-03-18 23:05:26,448 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: defer
+2022-03-18 23:05:26,448 INFO    SenderThread:2215 [sender.py:send_request_defer():388] handle sender defer: 10
+2022-03-18 23:05:26,548 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: poll_exit
+2022-03-18 23:05:26,548 DEBUG   SenderThread:2215 [sender.py:send_request():249] send_request: poll_exit
+2022-03-18 23:05:26,548 INFO    SenderThread:2215 [file_pusher.py:join():150] waiting for file pusher
+2022-03-18 23:05:26,933 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: sampled_history
+2022-03-18 23:05:26,933 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: get_summary
+2022-03-18 23:05:26,934 DEBUG   HandlerThread:2215 [handler.py:handle_request():141] handle_request: shutdown
+2022-03-18 23:05:26,934 INFO    HandlerThread:2215 [handler.py:finish():778] shutting down handler
+2022-03-18 23:05:27,448 INFO    WriterThread:2215 [datastore.py:close():281] close: ./logs/bottles_official_100k_nobat/wandb/run-20220318_230517-1huz6wna/run-1huz6wna.wandb
+2022-03-18 23:05:27,832 INFO    SenderThread:2215 [sender.py:finish():1078] shutting down sender
+2022-03-18 23:05:27,832 INFO    SenderThread:2215 [file_pusher.py:finish():145] shutting down file pusher
+2022-03-18 23:05:27,832 INFO    SenderThread:2215 [file_pusher.py:join():150] waiting for file pusher
+2022-03-18 23:05:27,834 INFO    MainThread:2215 [internal.py:handle_exit():82] Internal process exited
