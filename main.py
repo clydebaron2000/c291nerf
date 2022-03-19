@@ -544,7 +544,7 @@ def train(args):
 
         print('done')
         i_batch = 0
-        
+
         # Move training data to GPU
         images = torch.Tensor(images).to(device)
         rays_rgb = torch.Tensor(rays_rgb).to(device)
@@ -653,6 +653,16 @@ def train(args):
 
         ##### Rest is logging
 
+        if i%args.i_print==0:
+            outstring =f"[TRAIN] Iter: {i} Loss: {train_loss.item()} PSNR: {train_psnr.item()} Iter time: {dt:.05f}" 
+            tqdm.write(outstring)
+            wandb.log({
+                "TRAIN Iter": i,
+                "TRAIN Loss": train_loss.item(),
+                "TRAIN PSNR": train_psnr.item(),
+                "Iter time": dt
+            })
+
         # logging weights
         if i%args.i_weights==0:
             path = path_join(basedir, expname, '{:06d}.tar'.format(i))
@@ -697,9 +707,6 @@ def train(args):
             inds = i_test
             if args.render_poses_filter:
                 inds = i_test[args.render_poses_filter]
-            # print('test poses shape', poses[inds].shape)
-            # TODO: CHANGE
-            # print('test poses shape', poses[[30]].shape)
             with torch.no_grad():
                 pose_filter = torch.Tensor(poses[inds]).to(device)
                 render_path(pose_filter, hwf, K, args.chunk, render_kwargs_test,
@@ -710,6 +717,7 @@ def train(args):
             print('Saved test set')
     
         if i%args.i_val_eval==0 and i > 0:
+            print("Evaluating on validation set")
             with torch.no_grad():
                 rgbs, disps = render_path(val_poses, hwf, K, args.chunk, render_kwargs_train,
                                             gt_imgs=val_imgs,
@@ -717,19 +725,8 @@ def train(args):
                                             img_suffix=i
                                             )
 
-        if i%args.i_print==0:
-            # validation evaluation
-            outstring =f"[TRAIN] Iter: {i} Loss: {train_loss.item()} PSNR: {train_psnr.item()}" 
-            tqdm.write(outstring)
-            wandb.log({
-                "TRAIN Iter": i,
-                "TRAIN Loss": train_loss.item(),
-                "TRAIN PSNR": train_psnr.item(),
-            })
+       
             
-            # print(expname, i, psnr.numpy(), loss.numpy(), global_step.numpy())
-            print('iter time {:.05f}'.format(dt))
-            wandb.log({"iter time": time.time()-time0})
         """
             with tf.contrib.summary.record_summaries_every_n_global_steps(args.i_print):
                 tf.contrib.summary.scalar('loss', loss)
