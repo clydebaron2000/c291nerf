@@ -701,9 +701,9 @@ def train(args):
             imageio.mimwrite(moviebase + 'depth.mp4', to8b(depths / np.max(depths)), fps=30, quality=8)
             wandb.log({
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.gif': wandb.Video(moviebase + 'rgb.mp4', format='gif'),
-                '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Video(moviebase + 'disp.mp4', format='gif'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'disp.gif': wandb.Video(moviebase + 'depth.mp4', format='gif'),
                 '{}_spiral_{:06d}_'.format(expname, i)+'rgb.mp4': wandb.Video(moviebase + 'rgb.mp4'),
-                '{}_spiral_{:06d}_'.format(expname, i)+'depth.mp4': wandb.Video(moviebase + 'disp.mp4'),
+                '{}_spiral_{:06d}_'.format(expname, i)+'depth.mp4': wandb.Video(moviebase + 'depth.mp4'),
             })
             if args.use_viewdirs:
                 print('static video')
