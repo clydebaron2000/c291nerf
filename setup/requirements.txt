@@ -22,4 +22,4 @@ tensorflow
 pytest
 ipdb
 wandb
-
+moviepy

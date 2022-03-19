@@ -1,8 +1,9 @@
 N_importance = 128
-N_rand = 4096
+N_rand = 2048
 N_samples = 64
 basedir = ./logs
-chunk = 65536
+chunk = 32768
+
 config = ./configs/bottles_official.txt
 datadir = ./data/bottles
 dataset_type = pictures
@@ -14,10 +15,12 @@ half_res = False
 i_embed = 0
 i_img = 500
 i_print = 100
-i_testset = 10000
+
+i_testset = 100000
 i_val_eval = 1000
 i_val_set = 10
-i_video = 10000
+i_video = 100000
+
 i_weights = 10000
 lindisp = False
 llffhold = 8
@@ -26,7 +29,9 @@ lrate_decay = 200
 multires = 10
 multires_views = 4
 n_iters = 100000
-netchunk = 131072
+
+netchunk = 65536
+
 netdepth = 8
 netdepth_fine = 8
 netwidth = 256

@@ -16,9 +16,11 @@ N_importance = 128
 
 use_viewdirs = True
 
+i_testset = 1000
+
 render_test = True
 render_factor = 1
-N_rand = 2048
+N_rand = 4096
 
 lrate_decay = 100
 
@@ -27,11 +29,5 @@ multires_views = 4
 
 i_weights = 10000
 n_iters = 300000
-i_testset = 10000
-i_video = 10000
-
-i_val_set = 10
-i_val_eval = 1000
-
-chunk = 65536
-netchunk = 131072
+i_testset = 100000
+i_video = 100000

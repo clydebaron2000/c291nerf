@@ -517,7 +517,8 @@ def train(args):
             makedirs(testsavedir, exist_ok=True)
             print('test poses shape', render_poses.shape)
 
-            rgbs, _, depths = render_path(render_poses[:5], hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
+            rgbs, _, depths = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test, gt_imgs=images, savedir=testsavedir, render_factor=args.render_factor)
+
             depths = np.repeat(np.expand_dims(depths,axis=3),3,axis=3)
             # because rgbs may be slightly over 1
             imageio.mimwrite(path_join(testsavedir, 'rbgs_video.mp4'), to8b(rgbs/np.max(rgbs)), fps=30, quality=8)
@@ -692,7 +693,8 @@ def train(args):
             # Turn on testing mode
             print('video')
             with torch.no_grad():
-                rgbs, _, depths = render_path(render_poses[:5], hwf, K, args.chunk, render_kwargs_test)
+                rgbs, _, depths = render_path(render_poses, hwf, K, args.chunk, render_kwargs_test)
+
             print('Done, saving', rgbs.shape, depths.shape)
             moviebase = path_join(basedir, expname, '{}_spiral_{:06d}_'.format(expname, i))
             imageio.mimwrite(moviebase + 'rgb.mp4', to8b(rgbs), fps=30, quality=8)
@@ -707,7 +709,8 @@ def train(args):
                 print('static video')
                 render_kwargs_test['c2w_staticcam'] = render_poses[30][:3,:4]
                 with torch.no_grad():
-                    rgbs_still, *_ = render_path(render_poses[:5], hwf, K ,args.chunk, render_kwargs_test)
+                    rgbs_still, *_ = render_path(render_poses, hwf, K ,args.chunk, render_kwargs_test)
+
                 render_kwargs_test['c2w_staticcam'] = None
                 imageio.mimwrite(moviebase + 'rgb_still.mp4', to8b(rgbs_still), fps=30, quality=8)
                 wandb.log({
